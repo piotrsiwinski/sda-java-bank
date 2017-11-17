@@ -11,22 +11,30 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    RestLogoutSuccessHandler restLogoutSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .antMatchers("/admin", "/h2-console/**").permitAll()
+                .antMatchers("/", "/home", "/admin", "/h2-console/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/login")
+                .successHandler(RestLogoutFailureHandler)
+//                .failureHandler(restLogoutSuccessHandler) wasz typ jako argument
                 .permitAll()
                 .and()
                 .logout()
+                .logoutSuccessHandler(restLogoutSuccessHandler)
                 .permitAll();
+
+
+
         http.csrf().disable();
         http.headers().frameOptions().disable();
-
     }
 
     @Autowired
