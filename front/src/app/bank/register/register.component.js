@@ -7,7 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require('@angular/core');
 var RegisterComponent = (function () {
-    function RegisterComponent() {
+    function RegisterComponent(registerService, activatedRoute) {
+        this.registerService = registerService;
+        this.activatedRoute = activatedRoute;
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
