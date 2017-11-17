@@ -5,5 +5,4 @@ import pl.sda.poznan.bank.backend.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
     User findById(long id);
-    User findByLogin(String login);
 }
