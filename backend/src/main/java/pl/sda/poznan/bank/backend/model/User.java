@@ -23,19 +23,22 @@ public class User {
 
     private boolean activated;
 
+    private BankAccount bankAccount;
+
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
     public User() {
     }
 
-    public User(String login, String password, String firstName, String lastName, String email, boolean activated, UserType userType) {
+    public User(String login, String password, String firstName, String lastName, String email, boolean activated, BankAccount bankAccount, UserType userType) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.activated = activated;
+        this.bankAccount = bankAccount;
         this.userType = userType;
     }
 
@@ -101,5 +104,13 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 }
