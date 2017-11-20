@@ -28,19 +28,24 @@ public class BankAccountService {
 
 
     public Boolean payment(Double amount, User user) {
-        Double balance = bankAccount.getBalance();
+        if (bankAccount.getAccountType().equals(AccountType.STANDARD) || bankAccount.getAccountType().equals(AccountType.PREMIUM)) {
 
-        if (amount != null && amount > 0) {
-            balance += amount;
-            System.out.println(balance);
-            History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
-                    "Dokonano operacji wpłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
+            Double balance = bankAccount.getBalance();
 
-            historyRepository.save(history);
-            return true;
+            if (amount != null && amount > 0) {
+                balance += amount;
+                System.out.println(balance);
+                History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
+                        "Dokonano operacji wpłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
+
+                historyRepository.save(history);
+                return true;
+            }
         }
-        return false;
-    }
+
+            return false;
+        }
+
 
 
     public Boolean payoff(Double amount) {
