@@ -28,11 +28,11 @@ public class BankAccountController {
 
     UserService userService;
 
-    ClientController clientController;
-    public BankAccountController(OperationHistory history, UserService userService, ClientController clientController) {
+    UserController userController;
+    public BankAccountController(OperationHistory history, UserService userService, UserController userController) {
         this.history = history;
         this.userService = userService;
-        this.clientController = clientController;
+        this.userController = userController;
     }
 
     @Autowired(required = false)
