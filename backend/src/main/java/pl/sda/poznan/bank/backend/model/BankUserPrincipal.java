@@ -5,10 +5,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class BankUserPricipal implements UserDetails {
+public class BankUserPrincipal implements UserDetails {
     private User user;
 
-    public BankUserPricipal(User user) {
+    public BankUserPrincipal(User user) {
         this.user = user;
     }
 
