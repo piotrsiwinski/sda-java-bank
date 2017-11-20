@@ -7,13 +7,29 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    RestLogoutSuccessHandler restLogoutSuccessHandler;
+    private RestLoginSuccessHandler restLoginSuccessHandler;
+
+    @Autowired
+    private RestLoginFailureHandler restLoginFailureHandler;
+
+    @Autowired
+   private RestLogoutSuccessHandler restLogoutSuccessHandler;
+
+    @Autowired
+    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -22,9 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/home", "/admin", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .and()
                 .formLogin()
-                .successHandler(RestLogoutFailureHandler)
-//                .failureHandler(restLogoutSuccessHandler) wasz typ jako argument
+                .successHandler(restLoginSuccessHandler)
+                .failureHandler(restLoginFailureHandler)
                 .permitAll()
                 .and()
                 .logout()
@@ -40,6 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
+//                .userDetailsService()
                 .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER");
     }
