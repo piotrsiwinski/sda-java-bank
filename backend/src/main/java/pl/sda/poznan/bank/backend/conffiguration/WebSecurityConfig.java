@@ -5,31 +5,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+
     private RestLoginSuccessHandler restLoginSuccessHandler;
-
-    @Autowired
     private RestLoginFailureHandler restLoginFailureHandler;
-
-    @Autowired
-   private RestLogoutSuccessHandler restLogoutSuccessHandler;
-
-    @Autowired
+    private RestLogoutSuccessHandler restLogoutSuccessHandler;
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
+    @Autowired
+    public WebSecurityConfig(RestLoginSuccessHandler restLoginSuccessHandler,
+                             RestLoginFailureHandler restLoginFailureHandler,
+                             RestLogoutSuccessHandler restLogoutSuccessHandler,
+                             RestAuthenticationEntryPoint restAuthenticationEntryPoint) {
+        this.restLoginSuccessHandler = restLoginSuccessHandler;
+        this.restLoginFailureHandler = restLoginFailureHandler;
+        this.restLogoutSuccessHandler = restLogoutSuccessHandler;
+        this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,7 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessHandler(restLogoutSuccessHandler)
                 .permitAll();
-
 
 
         http.csrf().disable();
