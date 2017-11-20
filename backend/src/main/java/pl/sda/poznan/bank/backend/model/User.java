@@ -8,9 +8,10 @@ public class User {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(nullable = false, unique = true)
     private String login;
 
     private String password;
