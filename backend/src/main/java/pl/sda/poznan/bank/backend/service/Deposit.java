@@ -1,3 +1,6 @@
+
+//TODO Popraw klase
+/*
 package pl.sda.poznan.bank.backend.service;
 
 import bank.labs.model.Client;
@@ -15,3 +18,4 @@ public class Deposit {
         return client.getSaldo();
     }
 }
+*/

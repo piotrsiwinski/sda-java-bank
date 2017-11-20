@@ -22,7 +22,7 @@ public class History {
     private LocalDate operationDate;
     private String description;
     @ManyToOne
-    private Client clientId;
+    private User userId;
 
 
     public History(OperationType operationType, LocalDate operationDate, String description) {

@@ -5,10 +5,6 @@ TODO w klasy ktore dodaja historie itd*/
 
 package pl.sda.poznan.bank.backend.controller;
 
-import bank.labs.model.Client;
-import bank.labs.service.BankAccountService;
-import bank.labs.service.ClientService;
-import bank.labs.service.OperationHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import pl.sda.poznan.bank.backend.model.User;
+import pl.sda.poznan.bank.backend.service.BankAccountService;
+import pl.sda.poznan.bank.backend.service.OperationHistory;
+import pl.sda.poznan.bank.backend.service.UserService;
 
 
 @Controller
@@ -26,12 +26,12 @@ public class BankAccountController {
 
     OperationHistory history;
 
-    ClientService clientService;
+    UserService userService;
 
     ClientController clientController;
-    public BankAccountController(OperationHistory history, ClientService clientService, ClientController clientController) {
+    public BankAccountController(OperationHistory history, UserService userService, ClientController clientController) {
         this.history = history;
-        this.clientService = clientService;
+        this.userService = userService;
         this.clientController = clientController;
     }
 
@@ -41,8 +41,8 @@ public class BankAccountController {
     }
 
     @PostMapping
-    public ModelAndView wplata(@ModelAttribute Client client, @ModelAttribute double amount) {
-        bankAccountService.payment(amount,client);
+    public ModelAndView wplata(@ModelAttribute User user, @ModelAttribute double amount) {
+        bankAccountService.payment(amount,user);
         System.out.println("wiadomosc test");
         return new ModelAndView("start");
     }
@@ -55,8 +55,8 @@ public class BankAccountController {
     }
 
     @PostMapping
-    public ModelAndView przelew(@ModelAttribute Client client) {
-        bankAccountService.transfer(400.0, clientService.getClient(client.getId()));
+    public ModelAndView przelew(@ModelAttribute User user) {
+        bankAccountService.transfer(400.0, userService.findUser(user.getId()));
         System.out.println("wiadomosc test3");
         return new ModelAndView("start");
     }

@@ -1,20 +1,22 @@
-package bank.labs.service;
+package pl.sda.poznan.bank.backend.service;
 
-import bank.labs.model.BankAccount;
-import bank.labs.model.Client;
-import bank.labs.model.History;
-import bank.labs.model.OperationType;
-import bank.labs.repository.HistoryRepository;
+import pl.sda.poznan.bank.backend.model.BankAccount;
+
+import pl.sda.poznan.bank.backend.model.History;
+import pl.sda.poznan.bank.backend.model.OperationType;
+import pl.sda.poznan.bank.backend.model.User;
+import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 import java.time.LocalDate;
 
 @Component
 public class BankAccountService {
 
-    private ClientService clientService;
+    private UserService userService;
 
     private HistoryRepository historyRepository;
 
@@ -22,14 +24,14 @@ public class BankAccountService {
 
 
     @Autowired
-    public BankAccountService(ClientService clientService, HistoryRepository historyRepository, BankAccount bankAccount) {
-        this.clientService = clientService;
+    public BankAccountService(UserService userService, HistoryRepository historyRepository, BankAccount bankAccount) {
+        this.userService = userService;
         this.bankAccount = bankAccount;
         this.historyRepository = historyRepository;
     }
 
 
-    public Boolean payment(Double amount, Client client) {
+    public Boolean payment(Double amount, User user) {
         Double balance = bankAccount.getBalance();
 
         if (amount != null && amount > 0) {
@@ -59,14 +61,14 @@ public class BankAccountService {
     }
 
     //TODO session.getTransaction().isActive nie dziala, czemu???
-    public Boolean transfer(Double amount, Client secondClient) {
+    public Boolean transfer(Double amount, User secondUser) {
         Session session = null;
         Double balance = bankAccount.getBalance();
         if (amount != null && amount > 0) {
             if (balance != null && balance > amount) {
                 try {
                     session.getTransaction().begin();
-                    Double secondClientBalance = secondClient.getBankAccount().getBalance();
+                    Double secondClientBalance = secondUser.getBankAccount().getBalance();
                     secondClientBalance += amount;
                     balance -= amount;
                     History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),

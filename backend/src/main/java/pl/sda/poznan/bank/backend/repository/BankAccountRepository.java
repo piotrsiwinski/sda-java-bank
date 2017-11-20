@@ -1,7 +1,8 @@
 package pl.sda.poznan.bank.backend.repository;
 
-import bank.labs.model.BankAccount;
+
 import org.springframework.data.repository.CrudRepository;
+import pl.sda.poznan.bank.backend.model.BankAccount;
 
 public interface BankAccountRepository extends CrudRepository<BankAccount, Long> {
 }

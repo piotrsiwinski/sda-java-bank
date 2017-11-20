@@ -1,8 +1,11 @@
+
+//TODO popraw klase
 package pl.sda.poznan.bank.backend.service;
 
-import bank.labs.model.Client;
-import bank.labs.model.History;
+
 import org.springframework.stereotype.Component;
+import pl.sda.poznan.bank.backend.model.History;
+import pl.sda.poznan.bank.backend.model.User;
 
 import java.util.ArrayList;
 
@@ -11,7 +14,7 @@ public class OperationHistory {
 
     private ArrayList<History> clientHistory;
 
-    private Client client;
+    private User user;
 
     public OperationHistory() {
         this.clientHistory = new ArrayList<>();
@@ -25,4 +28,5 @@ public class OperationHistory {
     public ArrayList<History> getClientHistory() {
         return clientHistory;
     }
+
 }

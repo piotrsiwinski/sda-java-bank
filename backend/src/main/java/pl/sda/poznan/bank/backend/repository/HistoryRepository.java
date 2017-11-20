@@ -1,7 +1,7 @@
 package pl.sda.poznan.bank.backend.repository;
 
-import bank.labs.model.History;
 import org.springframework.data.repository.CrudRepository;
+import pl.sda.poznan.bank.backend.model.History;
 
 import java.util.List;
 

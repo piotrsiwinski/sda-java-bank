@@ -1,49 +1,50 @@
 package pl.sda.poznan.bank.backend.controller;
 
-import bank.labs.model.Client;
-import bank.labs.repository.HistoryRepository;
-import bank.labs.service.ClientService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pl.sda.poznan.bank.backend.model.User;
+import pl.sda.poznan.bank.backend.repository.HistoryRepository;
+import pl.sda.poznan.bank.backend.service.UserService;
 
 @Controller
 @RequestMapping("/clients")
 public class ClientController {
 
-    private ClientService clientService;
+    private UserService userService;
     private HistoryRepository historyRepository;
 
     @Autowired
-    public ClientController(ClientService clientService, HistoryRepository historyRepository) {
-        this.clientService = clientService;
+    public ClientController(UserService userService, HistoryRepository historyRepository) {
+        this.userService = userService;
         this.historyRepository = historyRepository;
     }
 
-    @GetMapping("{clientId}")
-    public ModelAndView getClientHistory(@PathVariable("clientId") int clientId){
+    @GetMapping("{userId}")
+    public ModelAndView getClientHistory(@PathVariable("userId") int userId){
         ModelAndView modelAndView = new ModelAndView("history");
-        modelAndView.addObject("clientId", clientService.clientHistory(clientId));
+        modelAndView.addObject("userId", userService.userHistory(userId));
         return modelAndView;
     }
 
     @GetMapping
     public ModelAndView getAllClients(){
         ModelAndView modelAndView = new ModelAndView("allClients");
-        modelAndView.addObject("clients",clientService.getAllClients());
+        modelAndView.addObject("clients", userService.findAllUsers());
         return modelAndView;
     }
 
     @GetMapping("{id}")
     public ModelAndView getClient(@PathVariable("id") int id){
         ModelAndView modelAndView = new ModelAndView("client");
-        modelAndView.addObject("client", clientService.getClient(id));
+        modelAndView.addObject("client", userService.findUser(id));
         return modelAndView;
     }
     @PostMapping
-    public String saveClient(@ModelAttribute Client client){
-        clientService.saveClient(client);
+    public String saveClient(@ModelAttribute User user){
+        userService.saveUser(user);
         return  "redirect:/clients ";
     }
 }

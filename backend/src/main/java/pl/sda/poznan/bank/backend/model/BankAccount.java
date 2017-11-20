@@ -1,8 +1,13 @@
 package pl.sda.poznan.bank.backend.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class BankAccount {
 
     @Id
@@ -15,7 +20,7 @@ public class BankAccount {
     @ManyToOne
     private User user;
 
-    private long balance;
+    private double balance;
 
     public BankAccount() {
     }
@@ -26,35 +31,4 @@ public class BankAccount {
         this.balance = 0;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public long getBalance() {
-        return balance;
-    }
-
-    public void setBalance(long balance) {
-        this.balance = balance;
-    }
 }

@@ -1,33 +1,34 @@
 package pl.sda.poznan.bank.backend.service;
 
-import bank.labs.model.Client;
-import bank.labs.repository.HistoryRepository;
-import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import pl.sda.poznan.bank.backend.model.User;
+import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 
 import javax.persistence.OneToOne;
 
-@Getter
+@Component
 public class HistoryService {
 
     private BankAccountService bankAccountService;
 
     private OperationHistory operationHistory;
 
-    private ClientService clientService;
+    private UserService userService;
 
     private HistoryRepository historyRepository;
 
     @OneToOne
-    private Client client;
+    private User user;
 
 
 
     @Autowired
-    public HistoryService(BankAccountService bankAccountService, OperationHistory operationHistory, ClientService clientService) {
+    public HistoryService(BankAccountService bankAccountService, OperationHistory operationHistory, UserService userService) {
         this.bankAccountService = bankAccountService;
         this.operationHistory = operationHistory;
-        this.clientService = clientService;
+        this.userService = userService;
     }
 
 }
