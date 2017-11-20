@@ -1,10 +1,7 @@
 package pl.sda.poznan.bank.backend.service;
 
-import pl.sda.poznan.bank.backend.model.BankAccount;
+import pl.sda.poznan.bank.backend.model.*;
 
-import pl.sda.poznan.bank.backend.model.History;
-import pl.sda.poznan.bank.backend.model.OperationType;
-import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,6 @@ public class BankAccountService {
     private HistoryRepository historyRepository;
 
     private BankAccount bankAccount;
-
 
     @Autowired
     public BankAccountService(UserService userService, HistoryRepository historyRepository, BankAccount bankAccount) {

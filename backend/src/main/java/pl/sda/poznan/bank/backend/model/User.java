@@ -4,6 +4,7 @@ package pl.sda.poznan.bank.backend.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.sda.poznan.bank.backend.service.Credit;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,6 +32,8 @@ public class User {
     private boolean activated;
 
     private BankAccount bankAccount;
+
+    private Credit credit;
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
