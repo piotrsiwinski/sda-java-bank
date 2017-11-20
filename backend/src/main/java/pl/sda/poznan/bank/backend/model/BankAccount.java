@@ -49,4 +49,12 @@ public class BankAccount {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(long balance) {
+        this.balance = balance;
+    }
 }
