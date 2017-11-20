@@ -68,9 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .authenticationProvider(authenticationProvider());
-//                .userDetailsService()
-//                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER");
+/*                .inMemoryAuthentication()
+                .withUser("user").password("password").roles("USER");*/
     }
 
     @Bean
