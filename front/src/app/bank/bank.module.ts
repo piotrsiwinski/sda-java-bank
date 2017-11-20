@@ -10,5 +10,6 @@ import { RegisterComponent } from './register/register.component';
   exports: [LoginComponent, RegisterComponent],
   declarations: [LoginComponent, RegisterComponent]
 })
+
 export class BankModule {
 }

@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var platform_browser_1 = require('@angular/platform-browser');
 var core_1 = require('@angular/core');
+var angular_bootstrap_md_1 = require('angular-bootstrap-md');
 var app_component_1 = require('./app.component');
 var app_routing_module_1 = require("./app-routing.module");
 var page_not_found_component_1 = require('./page-not-found/page-not-found.component');
@@ -21,8 +22,10 @@ var AppModule = (function () {
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                app_routing_module_1.AppRoutingModule
+                app_routing_module_1.AppRoutingModule,
+                angular_bootstrap_md_1.MDBBootstrapModule.forRoot()
             ],
+            schemas: [core_1.NO_ERRORS_SCHEMA],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
         })

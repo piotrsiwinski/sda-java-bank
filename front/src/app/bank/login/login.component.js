@@ -7,8 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require('@angular/core');
 var LoginComponent = (function () {
-    function LoginComponent(loginService, activatedRoute) {
-        this.loginService = loginService;
+    function LoginComponent(activatedRoute) {
         this.activatedRoute = activatedRoute;
     }
     LoginComponent.prototype.ngOnInit = function () {

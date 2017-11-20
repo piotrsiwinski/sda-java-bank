@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {RegisterService} from "./register.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -9,7 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private registerService: RegisterService, private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
