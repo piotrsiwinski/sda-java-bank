@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Headers, Response, URLSearchParams} from '@angular/http';
 import 'rxjs/add/operator/map'
 import {HttpClient} from "@angular/common/http";
 import {HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {environment} from "./../../environments/environment.prod";
 
 @Injectable()
 export class AuthenticationService {
@@ -19,7 +20,7 @@ export class AuthenticationService {
     body.set('email', email);
     body.set('password', password);
 
-    return this.http.post('http://localhost;8080/api/authenticate', body.toString(), options)
+    return this.http.post(`${environment.baseApiUrl}/login`, body.toString(), options)
       .subscribe(res => {
         console.log(res);
         this.router.navigate(['/home']);

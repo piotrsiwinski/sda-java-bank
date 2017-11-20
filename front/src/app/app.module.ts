@@ -5,12 +5,14 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AlertComponentDirective } from './-directive/alert-component.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AlertComponentDirective
   ],
   imports: [
     BrowserModule,
