@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.service.UserService;
-
+ddd
 @Controller
 @RequestMapping("/clients")
 public class ClientController {
