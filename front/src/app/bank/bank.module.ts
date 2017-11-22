@@ -7,11 +7,17 @@ import {NewTransactionComponent} from './new-transaction/new-transaction.compone
 import {HistoryComponent} from './history/history.component';
 import {SettingsComponent} from './settings/settings.component';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [LoginComponent, RegisterComponent],
   declarations: [LoginComponent, RegisterComponent, MyFinancesComponent, NewTransactionComponent, HistoryComponent, SettingsComponent]

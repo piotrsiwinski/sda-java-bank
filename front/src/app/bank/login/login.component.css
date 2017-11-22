@@ -1,0 +1,12 @@
+.login-box{
+  width: 400px;
+  margin: auto;
+  margin-top: 150px!important;
+}
+.input-full{
+  width: 100%;
+  display: block;
+}
+.mat-card{
+  text-align: center;
+}
