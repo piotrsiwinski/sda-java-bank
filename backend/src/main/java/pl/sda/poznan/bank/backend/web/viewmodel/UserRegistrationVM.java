@@ -2,10 +2,19 @@ package pl.sda.poznan.bank.backend.web.viewmodel;
 
 public class UserRegistrationVM {
 
+    private String login;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -37,6 +46,9 @@ public class UserRegistrationVM {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserRegistrationVM() {
     }
 
     public UserRegistrationVM(String firstName, String lastName, String email, String password) {

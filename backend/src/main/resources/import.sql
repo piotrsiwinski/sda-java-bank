@@ -1,2 +1,2 @@
 
-INSERT INTO USER(ACTIVATED, LOGIN, PASSWORD) VALUES ('TRUE', 'admin', 'password');
+INSERT INTO USER(LOGIN, PASSWORD) VALUES ('admin', 'password');
