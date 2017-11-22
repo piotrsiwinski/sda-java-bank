@@ -1,34 +1,29 @@
 
-<!--<mat-card  class="login-component">-->
-  <!--<mat-card-title>Logowanie</mat-card-title>-->
-  <!--<mat-card-subtitle>Podaj poprawne dane aby się zalogować</mat-card-subtitle>-->
-  <!--<mat-card-content>-->
-    <!--<form class="login-form">-->
-      <!--<mat-form-field>-->
-        <!--<input class="input-full" type="string" matInput placeholder="Login" required>-->
-        <!--<mat-icon matSuffix>account_box</mat-icon>-->
-      <!--</mat-form-field>-->
-      <!--<mat-form-field  align="center">-->
-        <!--<input class="input-full" type="password" matInput placeholder="Password" required>-->
-        <!--<mat-icon matSuffix>lock</mat-icon>-->
-      <!--</mat-form-field>-->
-    <!--</form>-->
-  <!--</mat-card-content>-->
-  <!--<mat-card-actions></mat-card-actions>-->
 
-<!--</mat-card>-->
-<div class="login-box">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="loginForm">
+      <form>
+        <p class="h5 text-center mb-4">Logowanie do SDA - Bank</p>
 
-  <form class="login-form">
-    <mat-form-field>
-      <input class="input-full" type="string" matInput placeholder="Login" required>
-      <mat-icon matSuffix>account_box</mat-icon>
-    </mat-form-field>
-    <mat-form-field  align="center">
-      <input class="input-full" type="password" matInput placeholder="Password" required>
-      <mat-icon matSuffix>lock</mat-icon>
-   </mat-form-field>
-      <button mat-button >Zaloguj</button>
-  </form>
+        <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input type="text" id="defaultForm-email" class="form-control" mdbActive>
+          <label for="defaultForm-email">Login</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control" mdbActive>
+          <label for="defaultForm-pass">Hasło</label>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-default waves-light" mdbRippleRadius>Zaloguj</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
 </div>
-
