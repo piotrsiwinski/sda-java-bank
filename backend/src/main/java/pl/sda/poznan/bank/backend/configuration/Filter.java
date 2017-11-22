@@ -1,4 +1,4 @@
-package pl.sda.poznan.bank.backend.conffiguration;
+package pl.sda.poznan.bank.backend.configuration;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
