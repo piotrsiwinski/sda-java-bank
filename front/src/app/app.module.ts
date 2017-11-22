@@ -7,6 +7,7 @@ import {AppComponent} from './app.component';
 import {BankModule} from "./bank/bank.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatInputModule} from '@angular/material/input';
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {MatInputModule} from '@angular/material/input';
     BrowserModule,
     BankModule,
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
