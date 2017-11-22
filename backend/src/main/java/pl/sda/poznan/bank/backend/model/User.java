@@ -1,6 +1,8 @@
 package pl.sda.poznan.bank.backend.model;
 
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,21 +24,18 @@ public class User {
 
     private String email;
 
-    private boolean activated;
-
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
     public User() {
     }
 
-    public User(String login, String password, String firstName, String lastName, String email, boolean activated, UserType userType) {
+    public User(String login, String password, String firstName, String lastName, String email, UserType userType) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.activated = activated;
         this.userType = userType;
     }
 
@@ -86,14 +85,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
     }
 
     public UserType getUserType() {

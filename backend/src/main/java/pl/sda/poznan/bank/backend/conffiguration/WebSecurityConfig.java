@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/admin", "/h2-console/**").permitAll()
+                .antMatchers("/api/v1/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
@@ -76,7 +77,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(encoder());
+        authProvider.setPasswordEncoder(encoder());
         return authProvider;
     }
 
