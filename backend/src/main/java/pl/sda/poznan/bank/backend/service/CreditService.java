@@ -2,20 +2,22 @@
 package pl.sda.poznan.bank.backend.service;
 
 
+import org.springframework.stereotype.Component;
 import pl.sda.poznan.bank.backend.model.User;
 
-public class Credit {
+
+public class CreditService {
 
     private User user;
 
 
-    public Credit(User user) {
+    public CreditService(User user) {
         this.user = user;
     }
 
 
     public boolean getCredit(Double amount) {
-        if (user.getBankAccount().getAccountType().equals("VIP")) {
+        if (user.getBankAccount().getAccountType().equals("PREMIUM")) {
             if (amount != null && amount > 0) {
                 Double balance = user.getBankAccount().getBalance();
                 balance += amount;

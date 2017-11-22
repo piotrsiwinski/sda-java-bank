@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-@Component
+
 public class BankAccountService {
 
     private UserService userService;
@@ -79,17 +79,18 @@ public class BankAccountService {
                     return true;
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    if (session != null)
+                    if (session != null /*&& session.getTransaction().isActive()*/) {
                         session.getTransaction().rollback();
+                    }
+                    return false;
+                } finally {
+                    if (session != null && session.isOpen()) {
+                        session.close();
+                    }
                 }
-
             }
         }
-
         return false;
-
     }
-
-
 }
 
