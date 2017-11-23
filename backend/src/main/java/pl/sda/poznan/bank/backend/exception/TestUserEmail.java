@@ -4,13 +4,11 @@ import pl.sda.poznan.bank.backend.service.UserService;
 
 public class TestUserEmail {
 
-    private UserService userService;
+    private static UserService userService;
 
-    public boolean UserEmailAlreadyRegistered(String UserEmail){
-        if (userService.findUserByEmail(UserEmail) == null){
-            return false;
-        } else {
-            return true;
+    static void TestUserEmailAlreadyRegistered(String UserEmail) throws UserException{
+        if (userService.findUserByEmail(UserEmail) != null){
+          throw new UserException("Email already existing");
         }
     }
 }
