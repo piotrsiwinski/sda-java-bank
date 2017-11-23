@@ -6,12 +6,12 @@ import pl.sda.poznan.bank.backend.model.BankAccount;
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 
 @Service
-public class BankAcconutService {
+public class BankAccountService {
 
     private BankAccountRepository bankAccountRepository;
 
     @Autowired
-    public BankAcconutService(BankAccountRepository bankAccountRepository){
+    public BankAccountService(BankAccountRepository bankAccountRepository){
         this.bankAccountRepository = bankAccountRepository;
     }
 
