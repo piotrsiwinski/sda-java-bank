@@ -6,5 +6,5 @@ import pl.sda.poznan.bank.backend.model.History;
 import java.util.List;
 
 public interface HistoryRepository extends CrudRepository<History,Long> {
-    List<History> findByClientId(long id);
+//    List<History> findByClientId(long id);
 }

@@ -4,12 +4,13 @@ package pl.sda.poznan.bank.backend.service;
 
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.model.History;
 import pl.sda.poznan.bank.backend.model.User;
 
 import java.util.ArrayList;
 
-@Component
+@Service
 public class OperationHistory {
 
     private ArrayList<History> clientHistory;

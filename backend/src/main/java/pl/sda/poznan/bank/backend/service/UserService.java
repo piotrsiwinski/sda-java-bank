@@ -2,14 +2,16 @@ package pl.sda.poznan.bank.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.model.History;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 
+import java.util.Collections;
 import java.util.List;
 
-@Component
+@Service
 public class UserService {
 
     public UserRepository userRepository;
@@ -35,6 +37,6 @@ public class UserService {
     }
 
     public List<History> userHistory(int id) {
-        return historyRepository.findByClientId(id);
+        return Collections.emptyList();
     }
 }

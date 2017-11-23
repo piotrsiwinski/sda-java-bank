@@ -29,6 +29,7 @@ public class BankAccountController {
     UserService userService;
 
     UserController userController;
+
     public BankAccountController(OperationHistory history, UserService userService, UserController userController) {
         this.history = history;
         this.userService = userService;
@@ -40,13 +41,14 @@ public class BankAccountController {
         this.bankAccountService = bankAccountService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/wplata")
     public ModelAndView wplata(@ModelAttribute User user, @ModelAttribute double amount) {
-        bankAccountService.payment(amount,user);
+        bankAccountService.payment(amount, user);
         System.out.println("wiadomosc test");
         return new ModelAndView("start");
     }
-//TODO popraw na posta
+
+    //TODO popraw na posta
     @GetMapping("/wyplata")
     public ModelAndView wyplata() {
         bankAccountService.payoff(400.0);
@@ -54,7 +56,7 @@ public class BankAccountController {
         return new ModelAndView("start");
     }
 
-    @PostMapping
+    @PostMapping(value = "/przelew")
     public ModelAndView przelew(@ModelAttribute User user) {
         bankAccountService.transfer(400.0, userService.findUser(user.getId()));
         System.out.println("wiadomosc test3");

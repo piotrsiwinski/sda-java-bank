@@ -3,12 +3,13 @@ package pl.sda.poznan.bank.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 
 import javax.persistence.OneToOne;
 
-@Component
+@Service
 public class HistoryService {
 
     private BankAccountService bankAccountService;

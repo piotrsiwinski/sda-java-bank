@@ -8,6 +8,7 @@ import pl.sda.poznan.bank.backend.service.CreditService;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,15 +32,15 @@ public class User {
 
     private boolean activated;
 
-    private BankAccount bankAccount;
+    @OneToMany(mappedBy = "user")
+    private List<BankAccount> bankAccount;
 
-    private CreditService creditService;
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
-    @OneToMany
-    private History history;
+    @OneToMany(mappedBy = "user")
+    private List<History> history;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateAccountStart;
@@ -47,14 +48,13 @@ public class User {
     public User() {
     }
 
-    public User(String login, String password, String firstName, String lastName, String email, boolean activated, BankAccount bankAccount, UserType userType) {
+    public User(String login, String password, String firstName, String lastName, String email, boolean activated, UserType userType) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.activated = activated;
-        this.bankAccount = bankAccount;
         this.userType = userType;
     }
 
