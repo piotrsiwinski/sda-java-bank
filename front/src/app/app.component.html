@@ -1,8 +1,16 @@
 <mat-sidenav-container class="all-wrap" fullscreen>
   <mat-sidenav #sidenav>
+    <div class="menu-header">
+      <h2>Menu</h2>
+      <span class="login-info">login@login.pl</span>
+    </div>
     <mat-list>
-      <mat-list-item [routerLink]="['/']"> Foo</mat-list-item>
-      <mat-list-item [routerLink]="['/bar']"> Bar</mat-list-item>
+      <mat-list-item [routerLink]="['/my-finances']"> Moje finanse</mat-list-item>
+      <mat-list-item [routerLink]="['/new-transaction']"> Wykonaj przelew</mat-list-item>
+      <mat-list-item [routerLink]="['/history']"> Historia</mat-list-item>
+      <mat-list-item [routerLink]="['/settings']"> Ustawienia konta</mat-list-item>
+      <span class="spacer"></span>
+      <mat-list-item [routerLink]="['/logout']"> Wyloguj</mat-list-item>
     </mat-list>
   </mat-sidenav>
 
@@ -17,6 +25,8 @@
           <mat-icon>menu</mat-icon>
         </button>
         SDA - Bank
+        <span class="spacer"></span>
+        <button mat-button>Click me!</button>
       </mat-toolbar>
     </header>
     <main class="content">
