@@ -3,6 +3,7 @@ package pl.sda.poznan.bank.backend.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.sda.poznan.bank.backend.exception.TestUserExceptions;
 import pl.sda.poznan.bank.backend.exception.UserException;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
@@ -28,24 +29,30 @@ public class UserService {
     }
 
     public void saveUser(UserRegistrationVM userVM) {
-            String encodedPassword = this.passwordEncoder.encode(userVM.getPassword());
-            User user = new User();
-            user.setLogin(userVM.getLogin());
-            user.setEmail(userVM.getEmail());
-            user.setPassword(encodedPassword);
+        try {
+            TestUserExceptions.TestUserAlreadyRegistered(userVM);
+        } catch (UserException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
+        String encodedPassword = this.passwordEncoder.encode(userVM.getPassword());
+        User user = new User();
+        user.setLogin(userVM.getLogin());
+        user.setEmail(userVM.getEmail());
+        user.setPassword(encodedPassword);
 
-            userRepository.save(user);
+        userRepository.save(user);
     }
 
     public User findUser(long id) {
         return userRepository.findById(id);
     }
 
-    public User findUserByEmail(String email){
+    public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public User findUserByLogin(String login){
+    public User findUserByLogin(String login) {
         return userRepository.findByLogin(login);
     }
 }
