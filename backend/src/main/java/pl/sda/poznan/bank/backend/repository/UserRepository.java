@@ -6,4 +6,5 @@ import pl.sda.poznan.bank.backend.model.User;
 public interface UserRepository extends CrudRepository<User, Long> {
     User findById(Long id);
     User findByLogin(String login);
+    User findByEmail(String email);
 }
