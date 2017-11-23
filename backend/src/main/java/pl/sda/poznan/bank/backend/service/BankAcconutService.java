@@ -20,10 +20,7 @@ public class BankAcconutService {
     }
 
     public void deleteAccount(long id){
-        if ()
-       bankAccountRepository.delete(id);
-    }
 
-    public void upp
+    }
 
 }
