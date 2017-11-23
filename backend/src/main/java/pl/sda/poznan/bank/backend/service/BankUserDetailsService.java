@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.model.BankUserPrincipal;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
+
 @Service
 public class BankUserDetailsService implements UserDetailsService {
 
