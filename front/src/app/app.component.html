@@ -1,41 +1,70 @@
+<mat-sidenav-container class="all-wrap" fullscreen>
+  <mat-sidenav #sidenav>
+    <mat-list>
+      <mat-list-item [routerLink]="['/']"> Foo</mat-list-item>
+      <mat-list-item [routerLink]="['/bar']"> Bar</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
 
-<nav class="navbar navbar-expand-lg navbar-light blue-grey lighten-5">
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">SDA - Bank</a>
-
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-          aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-    <!-- Links -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a routerLink="/home" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a  routerLink="/new-transaction" class="nav-link" href="#">Wykonaj transakcje</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/history" class="nav-link" href="#">Historia transakcji</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/settings" class="nav-link" href="#">Ustawienia konta</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/register" class="nav-link" href="#">Register</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/login" class="nav-link" href="#">Login</a>
-      </li>
-
-    </ul>
-    <!-- Links -->
+  <div class="page-wrap">
+    <header role="banner">
+      <mat-toolbar color="warn" >
+        <button
+          type="button"
+          mat-icon-button
+          (click)="sidenav.open()"
+          title="Open sidenav">
+          <mat-icon>menu</mat-icon>
+        </button>
+        SDA - Bank
+      </mat-toolbar>
+    </header>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      Your sticky footer with a variable height.
+    </footer>
   </div>
-  <!-- Collapsible content -->
+</mat-sidenav-container>
 
-</nav>
-<router-outlet></router-outlet>
+<!--<nav class="navbar navbar-expand-lg navbar-light blue-grey lighten-5">-->
+  <!--&lt;!&ndash; Navbar brand &ndash;&gt;-->
+  <!--<a class="navbar-brand" href="#">SDA - Bank</a>-->
+
+  <!--&lt;!&ndash; Collapse button &ndash;&gt;-->
+  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"-->
+          <!--aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>-->
+
+  <!--&lt;!&ndash; Collapsible content &ndash;&gt;-->
+  <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+
+    <!--&lt;!&ndash; Links &ndash;&gt;-->
+    <!--<ul class="navbar-nav ml-auto">-->
+      <!--<li class="nav-item active">-->
+        <!--<a routerLink="/home" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+      <!--</li>-->
+      <!--<li class="nav-item">-->
+        <!--<a  routerLink="/new-transaction" class="nav-link" href="#">Wykonaj transakcje</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item">-->
+        <!--<a routerLink="/history" class="nav-link" href="#">Historia transakcji</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item">-->
+        <!--<a routerLink="/settings" class="nav-link" href="#">Ustawienia konta</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item">-->
+        <!--<a routerLink="/register" class="nav-link" href="#">Register</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item">-->
+        <!--<a routerLink="/login" class="nav-link" href="#">Login</a>-->
+      <!--</li>-->
+
+    <!--</ul>-->
+    <!--&lt;!&ndash; Links &ndash;&gt;-->
+  <!--</div>-->
+  <!--&lt;!&ndash; Collapsible content &ndash;&gt;-->
+
+<!--</nav>-->
+
 

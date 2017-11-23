@@ -32,7 +32,6 @@ import{
   MatRadioModule,
   MatRippleModule,
   MatSelectModule,
-  MatSidenavModule,
   MatSliderModule,
   MatSlideToggleModule,
   MatSnackBarModule,
@@ -43,9 +42,11 @@ import{
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
+ import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
+    MatSidenavModule,
     CommonModule,
     MatInputModule,
     MatCardModule,
