@@ -6,11 +6,9 @@ public class TestUserLogin {
 
     private UserService userService;
 
-    public boolean userLoginAlreadyExists(String UserLogin){
-        if(userService.findUserByLogin(UserLogin) == null){
-            return false;
-        }else {
-            return true;
+    public void userLoginAlreadyExists(String UserLogin) throws UserException{
+        if(userService.findUserByLogin(UserLogin) != null){
+            throw new UserException("Login already existing");
         }
     }
 }
