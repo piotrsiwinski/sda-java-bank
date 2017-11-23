@@ -19,11 +19,9 @@ public class BankAcconutService {
         bankAccountRepository.save(bankAccount);
     }
 
-    public void deleteAccount(long id){
-        if ()
-       bankAccountRepository.delete(id);
+    public void deleteAccount(long id, BankAccount bankAccount){
+        if (bankAccount.getId() == id){
+            bankAccountRepository.delete(id);
+        }
     }
-
-    public void upp
-
 }
