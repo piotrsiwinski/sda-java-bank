@@ -2,6 +2,7 @@ package pl.sda.poznan.bank.backend.model;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.sda.poznan.bank.backend.service.CreditService;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
 
 
@@ -31,7 +33,7 @@ public class User {
 
     private String email;
 
-    private boolean activated;
+    private Boolean activated;
 
     @OneToMany(mappedBy = "user")
     private List<BankAccount> bankAccount;
@@ -46,17 +48,5 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateAccountStart;
 
-    public User() {
-    }
-
-    public User(String login, String password, String firstName, String lastName, String email, boolean activated, UserType userType) {
-        this.login = login;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.activated = activated;
-        this.userType = userType;
-    }
 
 }

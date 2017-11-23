@@ -23,26 +23,28 @@ public class UserService {
 
     public HistoryRepository historyRepository;
 
+
     @Autowired
-    public UserService(UserRepository userRepository, HistoryRepository historyRepository) {
-   @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.historyRepository = historyRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User findUser(long id){
+    public User findUser(long id) {
         return userRepository.findById(id);
     }
 
-    public List<User> findAllUsers(){
+    public List<User> findAllUsers() {
         return (List<User>) userRepository.findAll();
     }
 
-    public void saveUser(UserRegistrationVM userVM){
+    public void saveUser(UserRegistrationVM userVM) {
         String encodedPassword = this.passwordEncoder.encode(userVM.getPassword());
-        User user = new User(userVM.getLogin(), encodedPassword, null, null, null, null);
+        User user = new User();
+        user.setLogin(userVM.getLogin());
+        user.setEmail(userVM.getEmail());
+        user.setPassword(encodedPassword);
 
         userRepository.save(user);
     }
@@ -50,7 +52,6 @@ public class UserService {
     public List<History> userHistory(int id) {
         return Collections.emptyList();
     }
-
 
 
 }

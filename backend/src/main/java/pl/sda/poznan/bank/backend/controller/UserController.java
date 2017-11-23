@@ -42,9 +42,5 @@ public class UserController {
         modelAndView.addObject("user", userService.findUser(id));
         return modelAndView;
     }
-    @PostMapping
-    public String saveClient(@ModelAttribute User user){
-        userService.saveUser(user);
-        return  "redirect:/users ";
-    }
+
 }
