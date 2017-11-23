@@ -1,33 +1,48 @@
 package pl.sda.poznan.bank.backend.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import pl.sda.poznan.bank.backend.model.Investment;
 import pl.sda.poznan.bank.backend.model.User;
+import pl.sda.poznan.bank.backend.repository.InvestmentRepository;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 
 @Service
 public class InvestmentService {
 
-    public Double investmentPayment(Double amount, User user){
-//        Double balance = user.getBankAccount().getBalance();
-//        if(user.getBankAccount().getAccountType().equals("DEPOSIT")){
-//            if(amount != null && amount > 0){
-//                balance+=amount;
-//                System.out.println("Dokonano wplaty " + amount + ". Saldo: " + balance);
-//            }
-//        }
-//        return balance;
-        return null;
+    private InvestmentRepository investmentRepository;
+
+    @Autowired
+    public InvestmentService(InvestmentRepository investmentRepository) {
+        this.investmentRepository = investmentRepository;
     }
 
-//    public Double withdrawDuringInvestmentPeriod(Double amount, User user, Double interest){
-//        Double balance = user.getBankAccount().getBalance();
-//        amount*=interest;
-//        if(user.getBankAccount().getAccountType().equals("DEPOSIT")){
-//            if(amount != null && amount <= balance){
-//                balance-=amount;
-//            }
-//        }
-//        return balance;
-//    }
+    public Investment findInvestment(long id) {
+        return investmentRepository.findById(id);
+    }
+
+    public List<Investment> findAllInvestments() {
+        return (List<Investment>) investmentRepository.findAll();
+    }
+
+    public void saveInvestment(Investment investment) {
+        investmentRepository.save(investment);
+    }
+
+    public void removeInvestment(long id) {
+        investmentRepository.delete(id);
+    }
+    public void updateInvestment(long id, Investment newInvestment){
+        Investment oldInvestment = investmentRepository.findById(id);
+        oldInvestment.setUser(newInvestment.getUser());
+        oldInvestment.setInterest(newInvestment.getInterest());
+        oldInvestment.setStartInvestmentDate(newInvestment.getStartInvestmentDate());
+        oldInvestment.setEndInvestmentDate(newInvestment.getEndInvestmentDate());
+        oldInvestment.setInvestmentBalance(newInvestment.getInvestmentBalance());
+    }
+
 }
