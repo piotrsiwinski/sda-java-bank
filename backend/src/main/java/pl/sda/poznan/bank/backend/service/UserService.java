@@ -1,42 +1,25 @@
 package pl.sda.poznan.bank.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import pl.sda.poznan.bank.backend.model.History;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 import pl.sda.poznan.bank.backend.web.viewmodel.UserRegistrationVM;
 
-import java.util.Collections;
-import java.util.List;
-
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
-
-    public HistoryRepository historyRepository;
-
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final HistoryRepository historyRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, HistoryRepository historyRepository) {
         this.userRepository = userRepository;
-        this.historyRepository = historyRepository;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    public User findUser(long id) {
-        return userRepository.findById(id);
-    }
-
-    public List<User> findAllUsers() {
-        return (List<User>) userRepository.findAll();
+        this.historyRepository = historyRepository;
     }
 
     public void saveUser(UserRegistrationVM userVM) {
@@ -49,9 +32,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<History> userHistory(int id) {
-        return Collections.emptyList();
+    public User findUser(long id) {
+        return userRepository.findById(id);
     }
-
 
 }

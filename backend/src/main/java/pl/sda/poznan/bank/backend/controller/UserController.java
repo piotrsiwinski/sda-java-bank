@@ -2,12 +2,14 @@ package pl.sda.poznan.bank.backend.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import pl.sda.poznan.bank.backend.model.User;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.service.UserService;
+import pl.sda.poznan.bank.backend.web.viewmodel.UserRegistrationVM;
 
 @Controller
 @RequestMapping("/users")
@@ -22,25 +24,10 @@ public class UserController {
         this.historyRepository = historyRepository;
     }
 
-    @GetMapping("{userId}")
-    public ModelAndView getClientHistory(@PathVariable("userId") int userId){
-        ModelAndView modelAndView = new ModelAndView("history");
-        modelAndView.addObject("userId", userService.userHistory(userId));
-        return modelAndView;
-    }
-
-    @GetMapping
-    public ModelAndView getAllClients(){
-        ModelAndView modelAndView = new ModelAndView("allUsers");
-        modelAndView.addObject("users", userService.findAllUsers());
-        return modelAndView;
-    }
-
-    @GetMapping("{id}")
-    public ModelAndView getClient(@PathVariable("id") int id){
-        ModelAndView modelAndView = new ModelAndView("user");
-        modelAndView.addObject("user", userService.findUser(id));
-        return modelAndView;
+    @PostMapping(path = "/register")
+    public ResponseEntity<Object> saveUser(@RequestBody UserRegistrationVM userVM) {
+        userService.saveUser(userVM);
+        return ResponseEntity.status(201).body(userVM);
     }
 
 }
