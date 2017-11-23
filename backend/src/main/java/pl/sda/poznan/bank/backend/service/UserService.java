@@ -8,6 +8,8 @@ import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 import pl.sda.poznan.bank.backend.web.viewmodel.UserRegistrationVM;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -35,5 +37,15 @@ public class UserService {
     public User findUser(long id) {
         return userRepository.findById(id);
     }
+
+    public Optional<User> findUserByEmail(String email){
+        return  userRepository.findByEmail(email);
+    }
+
+    public void update(User user){
+        userRepository.save(user);
+    }
+
+
 
 }
