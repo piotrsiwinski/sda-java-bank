@@ -25,6 +25,7 @@ public class Investment {
     @ManyToOne
     private User user;
     private Double investmentBalance;
+
     private Double interest;
 
 }
