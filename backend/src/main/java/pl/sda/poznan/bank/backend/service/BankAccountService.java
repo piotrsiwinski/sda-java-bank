@@ -1,12 +1,15 @@
 package pl.sda.poznan.bank.backend.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import pl.sda.poznan.bank.backend.controller.api.v1.BankAccountController;
 import pl.sda.poznan.bank.backend.model.*;
 
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 
 
 import java.time.LocalDate;
@@ -45,9 +48,8 @@ public class BankAccountService {
             }
         }
 
-            return false;
-        }
-
+        return false;
+    }
 
 
     public Boolean payoff(Double amount) {
@@ -64,40 +66,37 @@ public class BankAccountService {
 
     }
 
-//TODO Controller najpierw, logika tutaj pozniej
-    /*public Boolean transfer() {
-        BankAccount bankAccount = new BankAccount();
-        Session session = null;
-        Double balance = bankAccount.getBalance();
-        if (amount != null && amount > 0) {
-            if (balance != null && balance > amount) {
-                try {
-                    session.getTransaction().begin();
-                    Double secondClientBalance = 0D;//secondUser.getBankAccount().getBalance();
-                    secondClientBalance += amount;
-                    balance -= amount;
-                    History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
-                            "Dokonano operacji przelewu dnia: " + LocalDate.now() + " na kwotę " + amount);
-                    historyRepository.save(history);
-                    session.getTransaction().commit();
-                    return true;
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    if (session != null *//*&& session.getTransaction().isActive()*//*) {
-                        session.getTransaction().rollback();
-                    }
-                    return false;
-                } finally {
-                    if (session != null && session.isOpen()) {
-                        session.close();
-                    }
-                }
+    //TODO Controller najpierw, logika tutaj pozniej
+    @Transactional
+    public Boolean transfer(TransferVM viewModel) {
+
+        BankAccount myAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
+        BankAccount destinationAccount = bankAccountRepository.findByAccountNumber(viewModel.getDestinationAccountNumber());
+        double myBalance = myAccount.getBalance();
+        double amount = viewModel.getAmount();
+        double destinationBalance = destinationAccount.getBalance();
+
+        //wkonaj przelew
+
+        // utworz nowa historia
+
+        //zapisz wszystko do bazy
+
+        if (amount > 0)
+            if (myAccount.getBalance() > amount) {
+
+                myBalance -= amount;
+
+                destinationBalance = +amount;
+
+                History history = new History(OperationType.TRANSFER, LocalDate.now(),
+                        "Dokonano operacji przelewu dnia: " + LocalDate.now() + " na kwotę " + amount);
+                historyRepository.save(history);
+                return true;
+
             }
-        }
-        return false;*/
-    }
-
-
+        return false;
+}
 
 
 }
