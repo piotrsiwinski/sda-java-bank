@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import pl.sda.poznan.bank.backend.exception.TransferException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -35,6 +36,14 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler {
         String bodyOfResponse = "408: The server timed out waiting for the request";
         return new ResponseEntity<>(bodyOfResponse,
                 new HttpHeaders(), HttpStatus.REQUEST_TIMEOUT);
+
+    }
+
+    @ExceptionHandler(TransferException.class)
+    ResponseEntity<Object> handleTransferException(final TransferException ex) {
+        String bodyOfResponse = "400: Transfer error";
+        return new ResponseEntity<>(ex.getMessage(),
+                new HttpHeaders(), HttpStatus.BAD_REQUEST);
 
     }
 

@@ -1,16 +1,17 @@
 package pl.sda.poznan.bank.backend.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import pl.sda.poznan.bank.backend.exception.TransferException;
 import pl.sda.poznan.bank.backend.model.*;
 
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
-import org.hibernate.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Service
@@ -30,7 +31,6 @@ public class BankAccountService {
     }
 
 
-    @Transactional
     public Boolean payment(TransferVM viewModel) {
         BankAccount myAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
         double myBalance = myAccount.getBalance();
@@ -47,8 +47,7 @@ public class BankAccountService {
 
             }
         return false;
-        }
-
+    }
 
 
 //    public Boolean payoff(Double amount) {
@@ -65,33 +64,34 @@ public class BankAccountService {
 //
 //    }
 
-    //TODO Controller najpierw, logika tutaj pozniej
-    @Transactional
-    public Boolean transfer(TransferVM viewModel) {
-
+    @Transactional(rollbackFor = TransferException.class)
+    public Boolean transfer(TransferVM viewModel) throws TransferException {
         BankAccount myAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
         BankAccount destinationAccount = bankAccountRepository.findByAccountNumber(viewModel.getDestinationAccountNumber());
         double myBalance = myAccount.getBalance();
         double amount = viewModel.getAmount();
         double destinationBalance = destinationAccount.getBalance();
 
+        if (amount < 0) {
+            throw new TransferException("Kwota jest mniejsza od zera");
+        }
 
-        if (amount > 0)
-            if (myAccount.getBalance() > amount) {
+        if (myAccount.getBalance() < amount) {
+            throw new TransferException("Za mało srodków na koncie");
+        }
 
-                myBalance -= amount;
+        myBalance -= amount;
+        destinationBalance = +amount;
+        History history = new History(OperationType.TRANSFER, LocalDate.now(),
+                "Dokonano operacji przelewu dnia: " + LocalDate.now() + " na kwotę " + amount);
+        historyRepository.save(history);
+        return true;
 
-                destinationBalance = +amount;
-
-                History history = new History(OperationType.TRANSFER, LocalDate.now(),
-                        "Dokonano operacji przelewu dnia: " + LocalDate.now() + " na kwotę " + amount);
-                historyRepository.save(history);
-                return true;
-
-            }
-        return false;
+    }
 }
 
 
-}
+
+
+
 
