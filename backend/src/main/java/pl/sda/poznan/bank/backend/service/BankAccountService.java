@@ -76,11 +76,6 @@ public class BankAccountService {
         double amount = viewModel.getAmount();
         double destinationBalance = destinationAccount.getBalance();
 
-        //wkonaj przelew
-
-        // utworz nowa historia
-
-        //zapisz wszystko do bazy
 
         if (amount > 0)
             if (myAccount.getBalance() > amount) {
