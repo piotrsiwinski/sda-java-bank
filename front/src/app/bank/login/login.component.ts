@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from "./login.service";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -9,7 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private activatedRoute: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
   }

@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <div class="jumbotron">
+      <div class="col-sm-12">
+        <h1 class="h1-responsive font-weight-bold">Historia transakcji</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <hr class="my-2">
+      </div>
+      <div class="col-sm-12">
+        <form action="" method="post">
+          <div class="row">
+
+            <div class="col-sm-4">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker1" placeholder="Transakcje od" [formControl]="date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-4">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker2" placeholder="Transakcje do"
+                       [formControl]="serializedDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="md-form">
+                <input mdbActive type="text" id="form61" class="form-control">
+                <label for="form61" class="">Szukaj</label>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="col-sm-12">
+        <table class="table table-bordered">
+          <thead class="text-uppercase text-center">
+          <tr>
+            <th class="h6">Data</th>
+            <th class="h6">Opis</th>
+            <th class="h6">Kwota</th>
+            <th class="h6">Saldo po</th>
+          </tr>
+          </thead>
+          <tbody class="text-center">
+          <tr>
+            <td>22.12.2017</td>
+            <td>SQ Club - płatnosć kartą</td>
+            <td>1 941,88 zł</td>
+            <td>3 2204 zł</td>
+          </tr>
+          <tr>
+            <td>12.12.2017</td>
+            <td>Lidl Poznań - płatnosć kartą</td>
+            <td>75,99 zł</td>
+            <td>2 9234 zł</td>
+          </tr>
+          <tr>
+            <td>07.12.2017</td>
+            <td>Żabka Poznań - płatnosć kartą</td>
+            <td>31,12 zł</td>
+            <td>2 1234 zł</td>
+          </tr>
+          <tr>
+            <td>27.11.2017</td>
+            <td>Decathlon Katowice - płatnosć kartą</td>
+            <td>234,80 zł</td>
+            <td>1 9234 zł</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>

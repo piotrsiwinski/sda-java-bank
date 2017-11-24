@@ -1,0 +1,247 @@
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Przelew zwykły">
+    <div class="container-fluid">
+      <div class="jumbotron marginUp">
+        <div class="row">
+
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Wybierz konto</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+
+            <div class="card marginUp">
+              <div class="card-body">
+                <h4 class="card-title">Konto Direct</h4>
+                <p class="card-text">00 0000 0000 0000 0000 0000 0000 </p>
+
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo dostepne:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo bieżące:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+
+            <div class="card marginUp">
+              <div class="card-body">
+                <h4 class="card-title">Konto Direct</h4>
+                <p class="card-text">00 0000 0000 0000 0000 0000 0000 </p>
+
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo dostepne:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo bieżące:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Przelew na</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+            <div class="md-form marginUp">
+              <input type="text" id="account" class="form-control" mdbActive>
+              <label for="account">Wpisz numer konta</label>
+            </div>
+            <div class="md-form marginUp">
+              <textarea type="text" id="adressInfo" class="md-textarea"></textarea>
+              <label for="adressInfo">Adres</label>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Szczegóły przelewu</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+            <div class="md-form marginUp">
+              <input type="number" id="amount" class="form-control" mdbActive>
+              <label for="amount">Wpisz kwote</label>
+            </div>
+            <div class="md-form marginUp">
+              <textarea type="text" id="title" class="md-textarea"></textarea>
+              <label for="title">Tytuł przelewu</label>
+            </div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Data przelewu" [formControl]="date">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <div>
+              <a href="#" class="btn btn-primary">Wyślij</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Przelew własny">
+    <div class="container-fluid">
+      <div class="jumbotron marginUp">
+        <div class="row">
+
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Wybierz konto</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+
+            <div class="card marginUp">
+              <div class="card-body">
+                <h4 class="card-title">Konto Direct</h4>
+                <p class="card-text">00 0000 0000 0000 0000 0000 0000 </p>
+
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo dostepne:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo bieżące:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+
+            <div class="card marginUp">
+              <div class="card-body">
+                <h4 class="card-title">Konto Direct</h4>
+                <p class="card-text">00 0000 0000 0000 0000 0000 0000 </p>
+
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo dostepne:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo bieżące:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Przelew na</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+            <div class="md-form marginUp">
+              <input type="text" id="account1" class="form-control" mdbActive>
+              <label for="account1">Wpisz numer konta</label>
+            </div>
+            <div class="md-form marginUp">
+              <textarea type="text" id="adressInfo1" class="md-textarea"></textarea>
+              <label for="adressInfo1">Adres</label>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Szczegóły przelewu</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+            <div class="md-form marginUp">
+              <input type="number" id="amount1" class="form-control" mdbActive>
+              <label for="amount1">Wpisz kwote</label>
+            </div>
+            <div class="md-form marginUp">
+              <textarea type="text" id="title1" class="md-textarea"></textarea>
+              <label for="title1">Tytuł przelewu</label>
+            </div>
+            <!--<mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Data przelewu" [formControl]="date">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>-->
+            <div>
+              <a href="#" class="btn btn-primary">Wyślij</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Doładowanie telefonu">
+    <div class="container-fluid">
+      <div class="jumbotron marginUp">
+        <div class="row">
+
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Wybierz konto</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+
+            <div class="card marginUp">
+              <div class="card-body">
+                <h4 class="card-title">Konto Direct</h4>
+                <p class="card-text">00 0000 0000 0000 0000 0000 0000 </p>
+
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo dostepne:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Saldo bieżące:
+                    <span class="font-weight-bold badge-pill">500,00 zł</span>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-8">
+            <h3 class="h3-responsive font-weight-bold">Szczegóły przelewu</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+            <div class="col-sm-4">
+              <div class="md-form marginUp">
+                <input type="text" id="number" class="form-control" mdbActive>
+                <label for="number">Podaj numer telefonu</label>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="md-form marginUp">
+                <input type="number" id="amount2" class="form-control" mdbActive>
+                <label for="amount2">Wpisz kwote</label>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="md-form marginUp">
+                <textarea type="text" id="title2" class="md-textarea"></textarea>
+                <label for="title1">Tytuł przelewu</label>
+              </div>
+            </div>
+            <!--<mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Data przelewu" [formControl]="date">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>-->
+            <div>
+              <a href="#" class="btn btn-primary">Wyślij</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>
+

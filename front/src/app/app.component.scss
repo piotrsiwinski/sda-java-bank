@@ -1,0 +1,64 @@
+.mat-tab-label{
+  width: 100%!important;
+}
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/*
+ * Actual Sticky Footer Styles
+ */
+.all-wrap {
+  min-height: 100vh;
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+
+/*
+ * Make the Component injected by Router Outlet full height:
+ */
+main {
+  display: flex;
+  flex-direction: column;
+  > *:not(router-outlet) {
+    flex: 1;
+    display: block;
+  }
+}
+mat-sidenav {
+  width: 200px;
+}
+.menu-header{
+  h2{
+    color: red;
+  }
+  .login-info{
+    font-size:13px;
+    color: black;
+    font-weight: 500;
+  }
+  margin-left: 15px;
+  margin-top:20px;
+  margin-bottom:40px;
+}
+
+mat-list-item{
+  cursor: pointer;
+  transition: 0.4s;
+}
+mat-list-item:hover{
+  background: #d8d8d8;
+}
+
+.spacer {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
