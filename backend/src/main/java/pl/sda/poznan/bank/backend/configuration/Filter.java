@@ -10,21 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class Filter extends OncePerRequestFilter{
+public class Filter extends OncePerRequestFilter {
 
     @Override
     public void destroy() {
-
-    }
-
-    private String getAllowedDomainsRegex() {
-        return "individual / customized Regex";
+        //not needed here
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        final String origin = "http://localhost:8090";
+        final String origin = "*";
         response.addHeader("Access-Control-Allow-Origin", origin);
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
         response.setHeader("Access-Control-Allow-Credentials", "true");

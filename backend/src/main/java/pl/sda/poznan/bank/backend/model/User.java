@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-import pl.sda.poznan.bank.backend.service.CreditService;
 
 import javax.persistence.*;
 import java.time.LocalDate;

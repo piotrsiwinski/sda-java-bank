@@ -13,13 +13,11 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final HistoryRepository historyRepository;
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, HistoryRepository historyRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.historyRepository = historyRepository;
     }
 
     public void saveUser(UserRegistrationVM userVM) {

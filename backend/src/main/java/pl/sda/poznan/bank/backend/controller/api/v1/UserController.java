@@ -1,4 +1,4 @@
-package pl.sda.poznan.bank.backend.controller;
+package pl.sda.poznan.bank.backend.controller.api.v1;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,14 @@ import pl.sda.poznan.bank.backend.service.UserService;
 import pl.sda.poznan.bank.backend.web.viewmodel.UserRegistrationVM;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/api/v1")
 public class UserController {
 
     private UserService userService;
-    private HistoryRepository historyRepository;
 
     @Autowired
     public UserController(UserService userService, HistoryRepository historyRepository) {
         this.userService = userService;
-        this.historyRepository = historyRepository;
     }
 
     @PostMapping(path = "/register")

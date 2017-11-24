@@ -1,6 +1,3 @@
-
-//TODO Popraw klase
-
 package pl.sda.poznan.bank.backend.model;
 
 
