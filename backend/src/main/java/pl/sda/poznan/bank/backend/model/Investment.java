@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 
 public class Investment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
