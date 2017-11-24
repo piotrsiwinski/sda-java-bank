@@ -53,7 +53,4 @@ public class WebSecurityConfigTest {
                 .param("password", "fail"))
                 .andExpect(status().is4xxClientError());
     }
-
-
-
 }
