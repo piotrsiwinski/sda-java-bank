@@ -1,8 +1,6 @@
 package pl.sda.poznan.bank.backend.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import pl.sda.poznan.bank.backend.controller.api.v1.BankAccountController;
 import pl.sda.poznan.bank.backend.model.*;
 
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Service
@@ -31,40 +30,40 @@ public class BankAccountService {
     }
 
 
-    public Boolean payment(Double amount, User user) {
-        BankAccount bankAccount = new BankAccount();
-        if (bankAccount.getAccountType().equals(AccountType.STANDARD) || bankAccount.getAccountType().equals(AccountType.PREMIUM)) {
+    @Transactional
+    public Boolean payment(TransferVM viewModel) {
+        BankAccount myAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
+        double myBalance = myAccount.getBalance();
+        double amount = viewModel.getAmount();
+        if (amount > 0)
+            if (myAccount.getBalance() > amount) {
 
-            Double balance = bankAccount.getBalance();
+                myBalance -= amount;
 
-            if (amount != null && amount > 0) {
-                balance += amount;
-                System.out.println(balance);
-                History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
-                        "Dokonano operacji wpłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
-
+                History history = new History(OperationType.TRANSFER, LocalDate.now(),
+                        "Dokonano operacji wypłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
                 historyRepository.save(history);
                 return true;
+
             }
+        return false;
         }
 
-        return false;
-    }
 
 
-    public Boolean payoff(Double amount) {
-        BankAccount bankAccount = new BankAccount();
-        Double balance = bankAccount.getBalance();
-        if (amount != null && amount > 0) {
-            balance -= amount;
-            History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
-                    "Dokonano operacji wypłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
-            historyRepository.save(history);
-            return true;
-        }
-        return false;
-
-    }
+//    public Boolean payoff(Double amount) {
+//        BankAccount bankAccount = new BankAccount();
+//        Double balance = bankAccount.getBalance();
+//        if (amount != null && amount > 0) {
+//            balance -= amount;
+//            History history = new History(OperationType.CONTRIBUTION, LocalDate.now(),
+//                    "Dokonano operacji wypłaty dnia: " + LocalDate.now() + " na kwotę " + amount);
+//            historyRepository.save(history);
+//            return true;
+//        }
+//        return false;
+//
+//    }
 
     //TODO Controller najpierw, logika tutaj pozniej
     @Transactional
