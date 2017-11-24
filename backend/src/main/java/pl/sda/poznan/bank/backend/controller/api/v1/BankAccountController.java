@@ -35,7 +35,7 @@ public class BankAccountController {
         this.bankAccountService = bankAccountService;
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping(path = "/transfer", consumes = "application/json")
     public ResponseEntity Transaction(@RequestBody @Valid TransferVM viewModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
