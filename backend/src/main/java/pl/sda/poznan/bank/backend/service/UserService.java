@@ -1,6 +1,7 @@
 package pl.sda.poznan.bank.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.model.User;
@@ -13,20 +14,21 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ConversionService conversionService;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, HistoryRepository historyRepository) {
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       ConversionService conversionService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.conversionService = conversionService;
     }
 
     public void saveUser(UserRegistrationVM userVM) {
         String encodedPassword = this.passwordEncoder.encode(userVM.getPassword());
-        User user = new User();
-        user.setLogin(userVM.getLogin());
-        user.setEmail(userVM.getEmail());
+        User user = conversionService.convert(userVM, User.class);
         user.setPassword(encodedPassword);
-
         userRepository.save(user);
     }
 
