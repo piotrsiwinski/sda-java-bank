@@ -12,6 +12,7 @@ import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.service.BankAccountService;
 import pl.sda.poznan.bank.backend.service.OperationHistoryService;
 import pl.sda.poznan.bank.backend.service.UserService;
+import pl.sda.poznan.bank.backend.web.viewmodel.PaymentAndPayoffVM;
 import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 
 import javax.validation.Valid;
@@ -33,6 +34,28 @@ public class BankAccountController {
     @Autowired(required = false)
     public void setBankAccountService(BankAccountService bankAccountService) {
         this.bankAccountService = bankAccountService;
+    }
+
+    @PostMapping(path = "/payment", consumes = "application/json")
+    public ResponseEntity Payment(@RequestBody @Valid PaymentAndPayoffVM viewModel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+
+        bankAccountService.payment(viewModel);
+
+        return ResponseEntity.ok("Dokonano wpłaty");
+    }
+
+    @PostMapping(path = "/payoff", consumes = "application/json")
+    public ResponseEntity Payoff(@RequestBody @Valid PaymentAndPayoffVM viewModel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+
+        bankAccountService.payoff(viewModel);
+
+        return ResponseEntity.ok("Dokonano wypłaty");
     }
 
     @PostMapping(path = "/transfer", consumes = "application/json")

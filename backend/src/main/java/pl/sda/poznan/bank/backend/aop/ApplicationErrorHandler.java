@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import pl.sda.poznan.bank.backend.exception.TransferException;
+import pl.sda.poznan.bank.backend.exception.OperationException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -39,8 +39,8 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler {
 
     }
 
-    @ExceptionHandler(TransferException.class)
-    ResponseEntity<Object> handleTransferException(final TransferException ex) {
+    @ExceptionHandler(OperationException.class)
+    ResponseEntity<Object> handleTransferException(final OperationException ex) {
         String bodyOfResponse = "400: Transfer error";
         return new ResponseEntity<>(ex.getMessage(),
                 new HttpHeaders(), HttpStatus.BAD_REQUEST);
