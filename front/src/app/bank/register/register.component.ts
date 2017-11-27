@@ -10,6 +10,8 @@ import {RegisterService} from "./register.service";
 })
 export class RegisterComponent implements OnInit {
   loading = false;
+  email: string;
+  password: string;
 
   constructor(private router: Router,
               private registerService: RegisterService) {
@@ -25,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.loading = true;
-    this.registerService.register(this.registerService.email, this.registerService.password)
+    this.registerService.register(this.email, this.password)
       .subscribe(
         data => {
           console.log(data);
