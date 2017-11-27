@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
         this.conversionService = conversionService;
     }
 
+    @Override
     public void saveUser(UserRegistrationVM userVM) {
         userRepository.findByEmail(userVM.getEmail()).ifPresent(user -> {
             throw new EmailAlreadyRegisteredException("");
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
     public User findUser(long id) {
         return userRepository.findById(id).orElseThrow(() -> {
             throw new UserNotFoundException("User with this id doesn't exists");
