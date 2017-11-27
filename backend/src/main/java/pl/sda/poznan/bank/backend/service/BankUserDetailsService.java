@@ -20,9 +20,7 @@ public class BankUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) {
-        User user = userRepository.findByLogin(login).orElseThrow(() -> {
-            throw new UserNotFoundException("User not found");
-        });
+        User user = userRepository.findByLogin(login).orElse(null);
         return new BankUserPrincipal(user);
     }
 }
