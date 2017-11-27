@@ -1,28 +1,24 @@
-
-
 <div class="container">
   <div class="row">
     <div class="col">
       <div class="loginForm">
-      <form>
-        <p class="h5 text-center mb-4">Logowanie do SDA - Bank</p>
-
-        <div class="md-form">
-          <i class="fa fa-envelope prefix grey-text"></i>
-          <input type="text" id="defaultForm-email" class="form-control" mdbActive>
-          <label for="defaultForm-email">Login</label>
-        </div>
-
-        <div class="md-form">
-          <i class="fa fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control" mdbActive>
-          <label for="defaultForm-pass">Hasło</label>
-        </div>
-
-        <div class="text-center">
-          <button class="btn btn-default waves-light" mdbRippleRadius>Zaloguj</button>
-        </div>
-      </form>
+        <img src="../assets/logo-poziom.png" alt="">
+        <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+          <h2>Logowanie</h2>
+          <div class="md-form">
+            <i class="fa fa-envelope prefix unique-text"></i>
+            <input type="text" id="login" name="login" ngModel mdbActive>
+            <label for="login">Login</label>
+          </div>
+          <div class="md-form">
+            <i class="fa fa-lock prefix unique-text"></i>
+            <input type="password" id="password" name="password" ngModel mdbActive>
+            <label for="password">Hasło</label>
+          </div>
+          <div class="text-center">
+            <button type="submit" value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Zaloguj</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

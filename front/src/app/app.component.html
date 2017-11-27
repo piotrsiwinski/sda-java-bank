@@ -1,7 +1,8 @@
 <mat-sidenav-container class="all-wrap" fullscreen>
   <mat-sidenav #sidenav>
     <div class="menu-header">
-      <h2>Menu</h2>
+
+      <img src="assets/logo-small.png" class="logo-center" alt="Responsive image">
       <span class="login-info">login@login.pl</span>
     </div>
     <mat-list>
@@ -16,7 +17,7 @@
 
   <div class="page-wrap">
     <header role="banner">
-      <mat-toolbar color="warn" >
+      <mat-toolbar class="pink darken-4 white-text" >
         <button
           type="button"
           mat-icon-button
@@ -24,9 +25,10 @@
           title="Open sidenav">
           <mat-icon>menu</mat-icon>
         </button>
-        SDA - Bank
+        <span class="brand ">SDA - Bank</span>
         <span class="spacer"></span>
-        <button mat-button>Click me!</button>
+        <button mat-button>Zaloguj</button>
+        <button mat-button>Wyloguj</button>
       </mat-toolbar>
     </header>
     <main class="content">
