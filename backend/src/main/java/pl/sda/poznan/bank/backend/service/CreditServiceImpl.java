@@ -17,7 +17,7 @@ import pl.sda.poznan.bank.backend.web.viewmodel.CreditVM;
 import java.time.LocalDate;
 
 @Service
-public class CreditService {
+public class CreditServiceImpl {
 
     private BankAccountRepository bankAccountRepository;
     private UserRepository userRepository;
@@ -25,7 +25,7 @@ public class CreditService {
 
 
     @Autowired
-    public CreditService(BankAccountRepository bankAccountRepository, UserRepository userRepository, CreditRepository creditRepository) {
+    public CreditServiceImpl(BankAccountRepository bankAccountRepository, UserRepository userRepository, CreditRepository creditRepository) {
         this.bankAccountRepository = bankAccountRepository;
         this.userRepository = userRepository;
         this.creditRepository = creditRepository;

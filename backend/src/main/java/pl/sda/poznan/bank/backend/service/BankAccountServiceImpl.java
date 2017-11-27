@@ -17,7 +17,7 @@ import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 import java.time.LocalDate;
 
 @Service
-public class BankAccountService {
+public class BankAccountServiceImpl {
 
 
     private HistoryRepository historyRepository;
@@ -25,7 +25,7 @@ public class BankAccountService {
     private BankAccountRepository bankAccountRepository;
 
     @Autowired
-    public BankAccountService(HistoryRepository historyRepository, BankAccountRepository bankAccountRepository) {
+    public BankAccountServiceImpl(HistoryRepository historyRepository, BankAccountRepository bankAccountRepository) {
         this.historyRepository = historyRepository;
         this.bankAccountRepository = bankAccountRepository;
     }
