@@ -10,11 +10,11 @@ import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 
 @Service
-public class BankUserDetailsService implements UserDetailsService {
+public class BankUserDetailsServiceImp implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
-    public BankUserDetailsService(UserRepository userRepository) {
+    public BankUserDetailsServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
