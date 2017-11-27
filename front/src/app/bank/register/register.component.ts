@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
         },
         error => {
           console.log(error);
