@@ -60,6 +60,8 @@ public class CreditService {
 
         credit.setUser(userRepository.findById(id));
 
+        creditRepository.save(credit);
+
         return true;
     }
 
