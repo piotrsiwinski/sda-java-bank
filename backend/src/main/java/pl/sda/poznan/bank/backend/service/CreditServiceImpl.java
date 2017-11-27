@@ -58,7 +58,7 @@ public class CreditServiceImpl {
         int installment = Integer.parseInt(viewModel.getInstallment());
         credit.setInstallment(installment);
 
-        credit.setUser(userRepository.findById(id));
+        credit.setUser(userRepository.findById(id).orElse(null));
 
         creditRepository.save(credit);
 
