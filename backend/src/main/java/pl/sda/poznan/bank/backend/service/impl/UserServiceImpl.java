@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.exception.EmailAlreadyRegisteredException;
 import pl.sda.poznan.bank.backend.exception.LoginAlreadyRegisteredException;
-import pl.sda.poznan.bank.backend.exception.UserNotFoundException;
+import pl.sda.poznan.bank.backend.exception.SdaBankApplicationException;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 import pl.sda.poznan.bank.backend.service.UserService;
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUser(long id) {
         return userRepository.findById(id).orElseThrow(() -> {
-            throw new UserNotFoundException("User with this id doesn't exists");
+            throw new RuntimeException("User with this id doesn't exists");
         });
     }
 
