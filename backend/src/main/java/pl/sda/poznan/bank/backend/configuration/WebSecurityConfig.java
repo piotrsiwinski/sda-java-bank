@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.sda.poznan.bank.backend.service.BankUserDetailsServiceImp;
+import pl.sda.poznan.bank.backend.service.impl.BankUserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -20,13 +20,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final RestLoginFailureHandler restLoginFailureHandler;
     private final RestLogoutSuccessHandler restLogoutSuccessHandler;
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-    private final BankUserDetailsServiceImp userDetailsService;
+    private final BankUserDetailsServiceImpl userDetailsService;
 
     public WebSecurityConfig(RestLoginSuccessHandler restLoginSuccessHandler,
                              RestLoginFailureHandler restLoginFailureHandler,
                              RestLogoutSuccessHandler restLogoutSuccessHandler,
                              RestAuthenticationEntryPoint restAuthenticationEntryPoint,
-                             BankUserDetailsServiceImp userDetailsService) {
+                             BankUserDetailsServiceImpl userDetailsService) {
         this.restLoginSuccessHandler = restLoginSuccessHandler;
         this.restLoginFailureHandler = restLoginFailureHandler;
         this.restLogoutSuccessHandler = restLogoutSuccessHandler;

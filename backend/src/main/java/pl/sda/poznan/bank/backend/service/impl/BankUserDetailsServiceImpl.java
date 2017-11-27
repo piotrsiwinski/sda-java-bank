@@ -1,4 +1,4 @@
-package pl.sda.poznan.bank.backend.service;
+package pl.sda.poznan.bank.backend.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,11 +10,11 @@ import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 
 @Service
-public class BankUserDetailsServiceImp implements UserDetailsService {
+public class BankUserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
-    public BankUserDetailsServiceImp(UserRepository userRepository) {
+    public BankUserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
