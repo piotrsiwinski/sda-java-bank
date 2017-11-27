@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
-import pl.sda.poznan.bank.backend.service.UserServiceImp;
+import pl.sda.poznan.bank.backend.service.impl.UserServiceImpl;
 import pl.sda.poznan.bank.backend.web.viewmodel.UserRegistrationVM;
 
 @Controller
 @RequestMapping("/api/v1")
 public class UserController {
 
-    private UserServiceImp userService;
+    private UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserServiceImp userService, HistoryRepository historyRepository) {
+    public UserController(UserServiceImpl userService, HistoryRepository historyRepository) {
         this.userService = userService;
     }
 
