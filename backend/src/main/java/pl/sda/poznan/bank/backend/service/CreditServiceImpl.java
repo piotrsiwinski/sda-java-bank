@@ -65,7 +65,7 @@ public class CreditServiceImpl {
         return true;
     }
 
-    @Scheduled(cron = "0 0 8 10 * ?")
+//    @Scheduled(cron = "0 0 8 10 * ?")
     public void CreditInstallment(long id){
         Credit credit = creditRepository.findOne(id);
         Double creditBalance = credit.getCreditBalance();
