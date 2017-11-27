@@ -1,11 +1,13 @@
 package pl.sda.poznan.bank.backend.controller.api.v1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import pl.sda.poznan.bank.backend.model.History;
+import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 
 @RestController
@@ -19,18 +21,17 @@ public class HistoryController {
         this.historyRepository = historyRepository;
     }
 
+
     @GetMapping("/{id}")
-    public ModelAndView getHistory(@PathVariable("id") long id) {
-        ModelAndView modelAndView = new ModelAndView("historyId");
-        modelAndView.addObject("historyId", historyRepository.findById(id));
-        return modelAndView;
+    public ResponseEntity<Object> getHistoryById(@PathVariable("id") long id) {
+        History historyById = historyRepository.findById(id);
+        return ResponseEntity.status(201).body(historyById);
     }
 
     @GetMapping("/{user}")
-    public ModelAndView getUserHistory(@PathVariable("user") long user) {
-        ModelAndView modelAndView = new ModelAndView("userHistory");
-        modelAndView.addObject("userHistory", historyRepository.findById(user));
-        return modelAndView;
+    public ResponseEntity<Object> getHistoryByUser(@PathVariable("user") User user) {
+        History historyByUser = historyRepository.findByUser(user);
+        return ResponseEntity.status(201).body(historyByUser);
     }
 
 }
