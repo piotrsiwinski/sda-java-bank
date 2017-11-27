@@ -22,13 +22,18 @@ public class BankAccount {
 
     private double balance;
 
+    private  int accountNumber;
+
     public BankAccount() {
     }
 
-    public BankAccount(AccountType accountType, User user) {
+    public BankAccount(AccountType accountType, User user, int accountNumber) {
         this.accountType = accountType;
         this.user = user;
+        this.accountNumber = accountNumber;
         this.balance = 0;
     }
+
+
 
 }

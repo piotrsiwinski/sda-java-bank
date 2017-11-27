@@ -1,6 +1,5 @@
 package pl.sda.poznan.bank.backend.model;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,19 +13,23 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 
-public class Investment {
+public class Credit {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startInvestmentDate;
+    private LocalDate startCreditDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endInvestmentDate;
+    private LocalDate endCreditDate;
     @ManyToOne
     private User user;
-    private Double investmentBalance;
+
+    private Double creditBalance;
 
     private Double interest;
+
+    private Integer installment;
 
 }
 
