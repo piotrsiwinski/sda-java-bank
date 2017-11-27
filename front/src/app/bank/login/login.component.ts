@@ -1,6 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {LoginService} from "./login.service";
+import { Component} from '@angular/core';
 
 
 @Component({
@@ -8,24 +6,10 @@ import {LoginService} from "./login.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
 
-  loginForms: FormGroup;
-
-  constructor(private builder: FormBuilder, private service: LoginService){}
-
-  ngOnInit(): void {
-    this.loginForms = this.builder.group({
-      login: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-  }
-
-
-
-  onSubmit = function (formData) {
-    console.log(formData);
-    this.service.login(formData);
+  onSubmit = function (a) {
+    console.log(a);
   }
 
 }
