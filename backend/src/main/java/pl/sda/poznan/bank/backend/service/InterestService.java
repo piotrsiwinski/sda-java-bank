@@ -13,7 +13,7 @@ public class InterestService {
 
 
 
-    public Double normalInterestCounter(Interest interest, BankAccount bankAccount) {
+    public Double credtInterestCounter(Interest interest, BankAccount bankAccount) {
 
         Double interestValue;
         Double bankAccountBalance = bankAccount.getBalance();
