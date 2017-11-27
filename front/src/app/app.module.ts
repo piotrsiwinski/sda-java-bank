@@ -8,6 +8,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatInputModule} from '@angular/material/input';
 import {AppRoutingModule} from "./app-routing.module";
 import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from "@angular/material";
+import {RegisterService} from "./bank/register/register.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,12 +22,13 @@ import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTool
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule, MatIconModule, MatListModule, MatSidenavModule,
 
   ],
-  providers: [],
+  providers: [RegisterService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
