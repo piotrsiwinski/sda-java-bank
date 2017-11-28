@@ -1,64 +1,70 @@
+<div class="container">
+  <div class="row header-act">
+    <div class="col-sm-12">
 
-      <div class="container">
-          <div class="row header-act">
+      <form #newTransactionForm="ngForm" (ngSubmit)="onSubmit(newTransactionForm.value)">
+        <div class="row">
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Ogólne</h3>
+            <h6 class="h6-responsive ">Poniżej wyświetla się lista Twoich kont.</h6>
+            <!--Lista kont z ilością pieniedzy na koncie - tu powinna być pętla po rodzajach kont-->
+            <hr class="my-2">
+            <mat-form-field>
+              <h6>Wybierz konto z którego chcesz wykonać przelew.</h6>
+              <mat-select name="accountType" id="accountType" [(value)]="selected" ngModel>
+                <mat-option value="Konto oszczędnościowe Oszczędzik - 529,00 zł">Konto oszczędnościowe Oszczędzik
+                </mat-option>
+                <mat-option value="Konto rodzinne Rodzinka - 1259,00 zł">Konto rodzinne Rodzinka</mat-option>
+                <mat-option value="Konto podstawowe Starszy - 920,00 zł">Konto podstawowe Starszy</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <p>Stan wybranego przez Ciebie konta wynosi: <strong>{{selected}} </strong></p>
+          </div>
 
-            <div class="col-sm-4">
-              <h3 class="h3-responsive font-weight-bold">Ogólne</h3>
-              <h6 class="h6-responsive ">Poniżej wyświetla się lista Twoich kont.</h6>
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Przelew na</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+            <div class="md-form marginUp">
+              <input type="text" id="iban" name="iban" ngModel mdbActive>
+              <label for="iban">Wpisz numer konta</label>
+            </div>
+            <div class="md-form marginUp">
+              <textarea type="text" id="transferAddress" name="transferAddress" class="md-textarea" ngModel></textarea>
+              <label for="transferAddress">Adres</label>
+            </div>
+          </div>
 
-              <!--Lista kont z ilością pieniedzy na koncie - tu powinna być pętla-->
-              <hr class="my-2">
-              <form #newTransactionForm="ngForm" (ngSubmit)="onSubmit(newTransactionForm.value)">
-              <mat-form-field >
-                <h6>Wybierz konto z którego chcesz wykonać przelew.</h6>
-
-                <mat-select name="accountType" id="accountType"[(value)]="selected" ngModel >
-                  <mat-option value="Konto oszczędnościowe Oszczędzik - 529,00 zł">Konto oszczędnościowe Oszczędzik</mat-option>
-                  <mat-option value="Konto rodzinne Rodzinka - 1259,00 zł">Konto rodzinne Rodzinka</mat-option>
-                  <mat-option value="Konto podstawowe Starszy - 920,00 zł">Konto podstawowe Starszy</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <p>Stan wybranego przez Ciebie konta wynosi: <strong>{{selected}} </strong></p>
-                <button type="submit" value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Zaloguj</button>
-              </form>
+          <div class="col-sm-4">
+            <h3 class="h3-responsive font-weight-bold">Szczegóły przelewu</h3>
+            <h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>
+            <hr class="my-2">
+            <div class="md-form marginUp">
+              <input type="number" id="transferAmmount" name="transferAmmount" class="form-control" mdbActive ngModel>
+              <label for="transferAmmount">Wpisz kwote</label>
+            </div>
+            <div class="md-form marginUp">
+              <textarea type="text" id="transferTitle" name="transferTitle" class="md-textarea" ngModel></textarea>
+              <label for="transferTitle">Tytuł przelewu</label>
+            </div>
+            <!--<mat-form-field>-->
+              <!--<input matInput [matDatepicker]="picker1" placeholder="Data przelewu" id="whenTransfer" name="whenTransfer" [formControl]="date" ngModel>-->
+              <!--<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+              <!--<mat-datepicker #picker1></mat-datepicker>-->
+            <!--</mat-form-field>-->
+            <div>
+              <button class="btn btn-unique waves-light" mdbRippleRadius>Wyślij przelew</button>
             </div>
 
-            <!--<div class="col-sm-4">-->
-              <!--<h3 class="h3-responsive font-weight-bold">Przelew na</h3>-->
-              <!--<h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>-->
-              <!--<hr class="my-2">-->
-              <!--<div class="md-form marginUp">-->
-                <!--<input type="text" id="account" class="form-control" mdbActive>-->
-                <!--<label for="account">Wpisz numer konta</label>-->
-              <!--</div>-->
-              <!--<div class="md-form marginUp">-->
-                <!--<textarea type="text" id="adressInfo" class="md-textarea"></textarea>-->
-                <!--<label for="adressInfo">Adres</label>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4">-->
-              <!--<h3 class="h3-responsive font-weight-bold">Szczegóły przelewu</h3>-->
-              <!--<h6 class="h6-responsive ">Lorem ipsum dolor sit amet.</h6>-->
-              <!--<hr class="my-2">-->
-              <!--<div class="md-form marginUp">-->
-                <!--<input type="number" id="amount" class="form-control" mdbActive>-->
-                <!--<label for="amount">Wpisz kwote</label>-->
-              <!--</div>-->
-              <!--<div class="md-form marginUp">-->
-                <!--<textarea type="text" id="title" class="md-textarea"></textarea>-->
-                <!--<label for="title">Tytuł przelewu</label>-->
-              <!--</div>-->
-              <!--<mat-form-field>-->
-                <!--<input matInput [matDatepicker]="picker1" placeholder="Data przelewu" [formControl]="date">-->
-                <!--<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
-                <!--<mat-datepicker #picker1></mat-datepicker>-->
-              <!--</mat-form-field>-->
-              <!--<div>-->
-                <!--<button class="btn btn-unique waves-light" mdbRippleRadius>Wyślij przelew</button>-->
-              <!--</div>-->
-
-            <!--</div>-->
-
           </div>
-      </div>
+
+        </div>
+
+
+        <button type="submit" value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Zaloguj</button>
+      </form>
+    </div>
+
+
+</div>
 
