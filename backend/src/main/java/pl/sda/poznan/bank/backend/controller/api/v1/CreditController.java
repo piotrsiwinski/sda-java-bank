@@ -7,9 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.sda.poznan.bank.backend.service.CreditServiceImpl;
+import pl.sda.poznan.bank.backend.service.impl.CreditServiceImpl;
 import pl.sda.poznan.bank.backend.web.viewmodel.CreditVM;
-import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 
 import javax.validation.Valid;
 

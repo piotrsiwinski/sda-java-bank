@@ -6,7 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.sda.poznan.bank.backend.service.BankAccountServiceImpl;
+import pl.sda.poznan.bank.backend.service.impl.BankAccountServiceImpl;
 import pl.sda.poznan.bank.backend.service.OperationHistoryService;
 import pl.sda.poznan.bank.backend.service.UserService;
 import pl.sda.poznan.bank.backend.web.viewmodel.PaymentAndPayoffVM;

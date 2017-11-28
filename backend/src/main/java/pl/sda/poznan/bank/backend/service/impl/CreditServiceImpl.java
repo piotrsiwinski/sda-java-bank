@@ -1,8 +1,7 @@
-package pl.sda.poznan.bank.backend.service;
+package pl.sda.poznan.bank.backend.service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.poznan.bank.backend.exception.OperationException;
@@ -12,12 +11,13 @@ import pl.sda.poznan.bank.backend.model.Credit;
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 import pl.sda.poznan.bank.backend.repository.CreditRepository;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
+import pl.sda.poznan.bank.backend.service.CreditService;
 import pl.sda.poznan.bank.backend.web.viewmodel.CreditVM;
 
 import java.time.LocalDate;
 
 @Service
-public class CreditServiceImpl {
+public class CreditServiceImpl implements CreditService {
 
     private BankAccountRepository bankAccountRepository;
     private UserRepository userRepository;
@@ -33,6 +33,7 @@ public class CreditServiceImpl {
     }
 
     @Transactional(rollbackFor = OperationException.class)
+    @Override
     public Boolean getCredit(CreditVM viewModel, long id) {
 
         String myAccountNumber = viewModel.getSourceAccountNumber();
@@ -66,7 +67,8 @@ public class CreditServiceImpl {
     }
 
 //    @Scheduled(cron = "0 0 8 10 * ?")
-    public void CreditInstallment(long id){
+@Override
+public void CreditInstallment(long id){
         Credit credit = creditRepository.findOne(id);
         Double creditBalance = credit.getCreditBalance();
         creditBalance -= creditBalance/credit.getInterest();

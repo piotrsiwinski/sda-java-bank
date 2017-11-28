@@ -1,23 +1,22 @@
-package pl.sda.poznan.bank.backend.service;
-
-import org.springframework.stereotype.Service;
-
-import org.springframework.transaction.annotation.Transactional;
-import pl.sda.poznan.bank.backend.exception.OperationException;
-import pl.sda.poznan.bank.backend.model.*;
-
-import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
-import pl.sda.poznan.bank.backend.repository.HistoryRepository;
+package pl.sda.poznan.bank.backend.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import pl.sda.poznan.bank.backend.exception.OperationException;
+import pl.sda.poznan.bank.backend.model.BankAccount;
+import pl.sda.poznan.bank.backend.model.History;
+import pl.sda.poznan.bank.backend.model.OperationType;
+import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
+import pl.sda.poznan.bank.backend.repository.HistoryRepository;
+import pl.sda.poznan.bank.backend.service.BankAccountService;
 import pl.sda.poznan.bank.backend.web.viewmodel.PaymentAndPayoffVM;
 import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
-
 
 import java.time.LocalDate;
 
 @Service
-public class BankAccountServiceImpl {
+public class BankAccountServiceImpl implements BankAccountService {
 
 
     private HistoryRepository historyRepository;
@@ -30,7 +29,9 @@ public class BankAccountServiceImpl {
         this.bankAccountRepository = bankAccountRepository;
     }
 
+
     @Transactional(rollbackFor = OperationException.class)
+    @Override
     public Boolean payment(PaymentAndPayoffVM viewModel) {
         BankAccount myBankAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
         double amount = viewModel.getAmount();
@@ -51,6 +52,7 @@ public class BankAccountServiceImpl {
 
 
     @Transactional(rollbackFor = OperationException.class)
+    @Override
     public Boolean payoff(PaymentAndPayoffVM viewModel) {
         BankAccount myBankAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
         double amount = viewModel.getAmount();
@@ -73,6 +75,7 @@ public class BankAccountServiceImpl {
     }
 
     @Transactional(rollbackFor = OperationException.class)
+    @Override
     public Boolean transfer(TransferVM viewModel) throws OperationException {
         BankAccount myAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
         BankAccount destinationAccount = bankAccountRepository.findByAccountNumber(viewModel.getDestinationAccountNumber());
