@@ -10,7 +10,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import pl.sda.poznan.bank.backend.exception.EmailAlreadyRegisteredException;
+import pl.sda.poznan.bank.backend.exception.LoginAlreadyRegisteredException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -60,6 +63,24 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler {
         String bodyOfResponse = "400: The server cannot or will not process the request due to an apparent client error.";
         return new ResponseEntity<>(bodyOfResponse,
                 new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EmailAlreadyRegisteredException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    ResponseEntity<Object> handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException ex) {
+        log.error("EmailAlreadyRegisteredException", ex);
+        String bodyOfResponse = "400: This Email is already registered.";
+        return new ResponseEntity<>(bodyOfResponse,
+                new HttpHeaders(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(LoginAlreadyRegisteredException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    ResponseEntity<Object> handleLoginAlreadyRegisteredException(LoginAlreadyRegisteredException ex) {
+        log.error("EmailAlreadyRegisteredException", ex);
+        String bodyOfResponse = "409: This Email is already registered.";
+        return new ResponseEntity<>(bodyOfResponse,
+                new HttpHeaders(), HttpStatus.CONFLICT);
     }
 
 
