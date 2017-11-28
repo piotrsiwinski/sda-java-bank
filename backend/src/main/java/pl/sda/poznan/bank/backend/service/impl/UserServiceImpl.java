@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
 
         String encodedPassword = this.passwordEncoder.encode(userVM.getPassword());
         User user = conversionService.convert(userVM, User.class);
+        user.setLogin(userVM.getEmail());
         user.setPassword(encodedPassword);
         userRepository.save(user);
     }
