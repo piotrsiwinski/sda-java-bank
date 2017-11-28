@@ -22,14 +22,15 @@ public class CreditServiceImpl implements CreditService {
     private BankAccountRepository bankAccountRepository;
     private UserRepository userRepository;
     private CreditRepository creditRepository;
+    private InterestServiceImpl interestService;
 
 
     @Autowired
-    public CreditServiceImpl(BankAccountRepository bankAccountRepository, UserRepository userRepository, CreditRepository creditRepository) {
+    public CreditServiceImpl(BankAccountRepository bankAccountRepository, UserRepository userRepository, CreditRepository creditRepository, InterestServiceImpl interestService) {
         this.bankAccountRepository = bankAccountRepository;
         this.userRepository = userRepository;
         this.creditRepository = creditRepository;
-
+        this.interestService = interestService;
     }
 
     @Transactional(rollbackFor = OperationException.class)
@@ -69,10 +70,10 @@ public class CreditServiceImpl implements CreditService {
 //    @Scheduled(cron = "0 0 8 10 * ?")
 @Override
 public void CreditInstallment(long id){
-        Credit credit = creditRepository.findOne(id);
-        Double creditBalance = credit.getCreditBalance();
-        creditBalance -= creditBalance/credit.getInterest();
-
+    Credit credit = creditRepository.findOne(id);
+    Double creditBalance = credit.getCreditBalance();
+    Double interestValue = interestService.credtInterestCounter(credit);
+    creditBalance -= creditBalance / interestValue;
 
     }
 
