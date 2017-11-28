@@ -8,40 +8,24 @@ import {RegisterModel} from "./RegisterModel";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
  registerModel: RegisterModel;
 
   error: string;
-  constructor() {
   constructor(private router: Router,
               private registerService: RegisterService) {
   }
 
-  ngOnInit() {
-  }
-  onSubmit = function (a) {
-    console.log(a);
-  }
-
-  onClick() {
-    this.register();
-  }
-
-  register() {
-    this.registerModel = {
-      firstName: 'qwe',
-      lastName: 'asd',
-      email: 'qwe@asd.pl',
-      password: 'qwerty'
-    };
-
-    this.registerService.register(this.registerModel)
+  onSubmit = function (data) {
+    console.log(data);
+    this.registerService.register(data)
       .subscribe(data => {
           console.log(data);
           this.router.navigate(['/']);
         },
         error => {
           console.log(error);
+          this.error = 'Cant register';
         });
   }
 }
