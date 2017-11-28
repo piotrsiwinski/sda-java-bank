@@ -8,12 +8,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatInputModule} from '@angular/material/input';
 import {AppRoutingModule} from "./app-routing.module";
 import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from "@angular/material";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     BrowserModule,
     BankModule,

@@ -12,14 +12,12 @@ export class NewTransactionComponent implements OnInit {
   transactionForm: FormGroup;
 
   constructor(private builder: FormBuilder, private service: NewTransactionService){
-
   }
-
 
   ngOnInit(): void {
     this.transactionForm = this.builder.group({
       amount: ['', Validators.required],
-      adressInfo: ['', Validators.required],
+      addressInfo: ['', Validators.required],
       account: ['', Validators.required],
       destinationAccount: ['', Validators.required],
       title: ['', Validators.required],
@@ -32,6 +30,7 @@ export class NewTransactionComponent implements OnInit {
       console.log("Form data: " + formData);
       this.service.doTransaction(formData);
     }
+    console.log("Invalid input");
   }
 
 
