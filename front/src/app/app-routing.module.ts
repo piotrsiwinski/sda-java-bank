@@ -6,7 +6,6 @@ import {SettingsComponent} from "./bank/settings/settings.component";
 import {NewTransactionComponent} from "./bank/new-transaction/new-transaction.component";
 import {MyFinancesComponent} from "./bank/my-finances/my-finances.component";
 import {HistoryComponent} from "./bank/history/history.component";
-import {AppComponent} from "./app.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full',component: LoginComponent},

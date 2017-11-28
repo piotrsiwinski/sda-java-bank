@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {RegisterService} from "./register.service";
 
-
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
