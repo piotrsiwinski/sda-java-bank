@@ -12,7 +12,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatStepperModule,} from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {FormsModule,} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule,} from '@angular/forms';
 import {HttpModule} from "@angular/http";
 @NgModule({
   imports: [
@@ -60,6 +60,9 @@ import {HttpModule} from "@angular/http";
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   exports: [LoginComponent, RegisterComponent, MyFinancesComponent, NewTransactionComponent, HistoryComponent, SettingsComponent],
