@@ -27,7 +27,8 @@ public class Credit {
 
     private Double creditBalance;
 
-    private Double interest;
+    @OneToOne
+    private Interest interest;
 
     private Integer installment;
 

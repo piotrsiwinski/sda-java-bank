@@ -72,6 +72,8 @@ public void CreditInstallment(long id){
         Credit credit = creditRepository.findOne(id);
         Double creditBalance = credit.getCreditBalance();
         creditBalance -= creditBalance/credit.getInterest();
+
+
     }
 
 
