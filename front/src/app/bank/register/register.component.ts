@@ -11,11 +11,16 @@ import {RegisterModel} from "./RegisterModel";
 export class RegisterComponent implements OnInit {
  registerModel: RegisterModel;
 
+  error: string;
+  constructor() {
   constructor(private router: Router,
               private registerService: RegisterService) {
   }
 
   ngOnInit() {
+  }
+  onSubmit = function (a) {
+    console.log(a);
   }
 
   onClick() {

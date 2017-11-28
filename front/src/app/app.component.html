@@ -27,8 +27,9 @@
         </button>
         <span class="brand ">SDA - Bank</span>
         <span class="spacer"></span>
-        <button mat-button>Zaloguj</button>
-        <button mat-button>Wyloguj</button>
+        <button mat-button [routerLink]="['/register']">Zarejestruj się</button>
+        <button mat-button [routerLink]="['/login']">Zaloguj</button>
+        <button mat-button [routerLink]="['/logout']">Wyloguj</button>
       </mat-toolbar>
     </header>
     <main class="content">
