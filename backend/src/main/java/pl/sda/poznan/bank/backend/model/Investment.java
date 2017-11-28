@@ -1,6 +1,8 @@
 package pl.sda.poznan.bank.backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +15,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Investment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,8 @@ public class Investment {
     private LocalDate startInvestmentDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endInvestmentDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User user;
     private Double investmentBalance;
 
