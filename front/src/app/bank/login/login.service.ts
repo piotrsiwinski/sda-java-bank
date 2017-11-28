@@ -4,7 +4,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 @Injectable()
 export class LoginService {
 
-  baseURL = 'http://localhost:8080/api/v1/login/';
+  baseURL = 'http://localhost:8080/api/v1/';
 
   constructor(private http: HttpClient) {
 
