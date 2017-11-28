@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {RegisterService} from "./register.service";
+import {RegisterModel} from "./RegisterModel";
 
 @Component({
   selector: 'register',
@@ -8,16 +9,13 @@ import {RegisterService} from "./register.service";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  loading = false;
-  email: string;
-  password: string;
+ registerModel: RegisterModel;
 
   constructor(private router: Router,
               private registerService: RegisterService) {
   }
 
   ngOnInit() {
-    this.registerService.logout();
   }
 
   onClick() {
@@ -25,16 +23,20 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.loading = true;
-    this.registerService.register(this.email, this.password)
-      .subscribe(
-        data => {
+    this.registerModel = {
+      firstName: 'qwe',
+      lastName: 'asd',
+      email: 'qwe@asd.pl',
+      password: 'qwerty'
+    };
+
+    this.registerService.register(this.registerModel)
+      .subscribe(data => {
           console.log(data);
           this.router.navigate(['/']);
         },
         error => {
           console.log(error);
-          this.loading = false;
         });
   }
 }
