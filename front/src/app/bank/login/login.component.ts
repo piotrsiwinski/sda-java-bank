@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
     console.log(formData);
     this.service
       .login(formData)
-      .subscribe(resp => console.log(JSON.stringify(resp, null, 2)));
+      .subscribe(
+        resp => console.log(JSON.stringify(resp, null, 2)),
+          err => console.log(JSON.stringify(err, null, 2)));
   }
 
 }
