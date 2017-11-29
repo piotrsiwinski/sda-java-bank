@@ -8,11 +8,12 @@ import {LoginService} from "./login.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   loginForms: FormGroup;
 
-  constructor(private builder: FormBuilder, private service: LoginService){}
+  constructor(private builder: FormBuilder, private service: LoginService) {
+  }
 
   ngOnInit(): void {
     this.loginForms = this.builder.group({
@@ -20,7 +21,6 @@ export class LoginComponent implements OnInit{
       password: ['', Validators.required],
     });
   }
-
 
 
   onSubmit = function (formData) {
