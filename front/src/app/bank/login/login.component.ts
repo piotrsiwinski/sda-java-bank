@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "./login.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForms: FormGroup;
 
-  constructor(private builder: FormBuilder, private service: LoginService) {
+  constructor(private builder: FormBuilder, private service: LoginService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -28,7 +29,10 @@ export class LoginComponent implements OnInit {
     this.service
       .login(formData)
       .subscribe(
-        resp => console.log(JSON.stringify(resp, null, 2)),
+        resp => {
+          console.log(JSON.stringify(resp, null, 2));
+          this.router.navigate(['/my-finances']);
+        },
           err => console.log(JSON.stringify(err, null, 2)));
   }
 
