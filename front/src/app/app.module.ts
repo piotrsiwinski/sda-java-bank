@@ -9,8 +9,7 @@ import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTool
 import {RegisterService} from "./bank/register/register.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
-import {RegisterService} from "./bank/register/register.service";
+import {LoginService} from "./bank/login/login.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +30,7 @@ import {RegisterService} from "./bank/register/register.service";
     MatButtonModule, MatIconModule, MatListModule, MatSidenavModule,
 
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, LoginService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
