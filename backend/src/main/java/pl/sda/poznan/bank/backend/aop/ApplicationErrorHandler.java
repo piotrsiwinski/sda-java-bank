@@ -69,7 +69,7 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     ResponseEntity<Object> handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException ex) {
         log.error("EmailAlreadyRegisteredException", ex);
-        String bodyOfResponse = "400: This Email is already registered.";
+        String bodyOfResponse = "409: This Email is already registered.";
         return new ResponseEntity<>(bodyOfResponse,
                 new HttpHeaders(), HttpStatus.CONFLICT);
     }
@@ -77,8 +77,8 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(LoginAlreadyRegisteredException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     ResponseEntity<Object> handleLoginAlreadyRegisteredException(LoginAlreadyRegisteredException ex) {
-        log.error("EmailAlreadyRegisteredException", ex);
-        String bodyOfResponse = "409: This Email is already registered.";
+        log.error("LoginAlreadyRegisteredException", ex);
+        String bodyOfResponse = "409: This Login is already registered.";
         return new ResponseEntity<>(bodyOfResponse,
                 new HttpHeaders(), HttpStatus.CONFLICT);
     }
