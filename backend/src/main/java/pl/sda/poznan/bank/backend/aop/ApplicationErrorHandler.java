@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import pl.sda.poznan.bank.backend.exception.EmailAlreadyRegisteredException;
 import pl.sda.poznan.bank.backend.exception.LoginAlreadyRegisteredException;
+import pl.sda.poznan.bank.backend.exception.UserNotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -26,6 +27,14 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UsernameNotFoundException.class)
     ResponseEntity<Object> handleUserNameNotFoundException(final UsernameNotFoundException ex) {
+        log.error("User not found", ex);
+        String bodyOfResponse = "404: The user was not found";
+        return new ResponseEntity<>(bodyOfResponse,
+                new HttpHeaders(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    ResponseEntity<Object> handleUserNotFoundException(final UsernameNotFoundException ex) {
         log.error("User not found", ex);
         String bodyOfResponse = "404: The user was not found";
         return new ResponseEntity<>(bodyOfResponse,

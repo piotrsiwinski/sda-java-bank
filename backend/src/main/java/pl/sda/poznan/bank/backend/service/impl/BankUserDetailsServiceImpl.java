@@ -21,6 +21,9 @@ public class BankUserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) {
         User user = userRepository.findByLogin(login).orElse(null);
+        if (user == null) {
+            throw new UserNotFoundException("Can't find user");
+        }
         return new BankUserPrincipal(user);
     }
 }

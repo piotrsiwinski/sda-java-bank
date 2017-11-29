@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   loginForms: FormGroup;
+  error: String;
 
   constructor(private builder: FormBuilder, private service: LoginService, private router: Router) {
   }
@@ -34,7 +35,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("session", resp.body);
           this.router.navigate(['/my-finances']);
         },
-          err => console.log(JSON.stringify(err, null, 2)));
+        err => {
+          this.error = "Zle dane logowania";
+          console.log(JSON.stringify(err, null, 2))
+        });
   }
 
 }

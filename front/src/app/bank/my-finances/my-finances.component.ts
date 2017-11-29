@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 
 @Component({
@@ -11,8 +11,7 @@ export class MyFinancesComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log(this.authService.getSessionId());
-    console.log(this.authService.isAuthenticated());
+
   }
 
 }
