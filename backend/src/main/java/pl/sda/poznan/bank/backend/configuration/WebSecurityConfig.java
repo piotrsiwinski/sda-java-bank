@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -25,6 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final RestLogoutSuccessHandler restLogoutSuccessHandler;
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
     private final BankUserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private Filter filter;
 
     public WebSecurityConfig(RestLoginSuccessHandler restLoginSuccessHandler,
                              RestLoginFailureHandler restLoginFailureHandler,
@@ -58,7 +61,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessHandler(restLogoutSuccessHandler)
-                .permitAll();
+                .permitAll()
+        .and()
+        .addFilterBefore(filter, CsrfFilter.class);
 
 
         http.csrf().disable();
