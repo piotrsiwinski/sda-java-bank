@@ -1,6 +1,6 @@
-import {Component, NgModule} from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import {CanActivateViaAuthGuard} from "./common/activate-guard";
+import {AuthService} from "./bank/auth/auth.service";
 
 @NgModule({
     imports: [MatButtonModule, MatCheckboxModule],
@@ -11,12 +11,16 @@ import {CanActivateViaAuthGuard} from "./common/activate-guard";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'app';
-  constructor(private activator: CanActivateViaAuthGuard){};
+export class AppComponent implements OnInit {
 
-  canActivate(){
-    this.activator.canActivate()
+  title = 'app';
+  isLoggedIn: Boolean = false;
+
+  constructor(private authService: AuthService) {
+  };
+
+  ngOnInit(): void {
+    // this.isLoggedIn = this.authService.isAuthenticated();
   }
 
 }
