@@ -6,6 +6,8 @@ import {BankModule} from "./bank/bank.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "./app-routing.module";
 import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from "@angular/material";
+import {RegisterService} from "./bank/register/register.service";
+import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {RegisterService} from "./bank/register/register.service";
