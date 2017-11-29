@@ -12,13 +12,21 @@
               <mat-form-field>
                 <h6>Wybierz konto z którego chcesz wykonać przelew.</h6>
 
-                <mat-select name="accountType" id="accountType"[(value)]="selected" ngModel >
-                  <mat-option value="Konto oszczędnościowe Oszczędzik - 529,00 zł">Konto oszczędnościowe Oszczędzik</mat-option>
-                  <mat-option value="Konto rodzinne Rodzinka - 1259,00 zł">Konto rodzinne Rodzinka</mat-option>
-                  <mat-option value="Konto podstawowe Starszy - 920,00 zł">Konto podstawowe Starszy</mat-option>
+                <mat-select name="destinationAccount" id="destinationAccount"[(value)]="selected" ngModel >
+                  <mat-option value="0000000">Konto oszczędnościowe</mat-option>
+                  <mat-option value="0000001">Konto rodzinne</mat-option>
+                  <mat-option value="0000002">Konto podstawowe</mat-option>
                 </mat-select>
               </mat-form-field>
-              <p>Stan wybranego przez Ciebie konta wynosi: <strong>{{selected}} </strong></p>
+              <p>Wybrałeś: <strong>{{selected}} </strong></p>
+                <input type="text" id="account" class="form-control" mdbActive>
+                <label for="account">Wpisz numer konta</label>
+                <textarea type="text" id="addressInfo" class="md-textarea"></textarea>
+                <label for="addressInfo">Adres</label>
+                <input type="number" id="amount" class="form-control" mdbActive>
+                <label for="amount">Wpisz kwote</label>
+                <textarea type="text" id="title" class="md-textarea"></textarea>
+                <label for="title">Tytuł przelewu</label>
                 <button type="submit" value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Zaloguj</button>
               </form>
             </div>

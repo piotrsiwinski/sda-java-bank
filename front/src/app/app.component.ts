@@ -1,5 +1,6 @@
 import {Component, NgModule} from '@angular/core';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {CanActivateViaAuthGuard} from "./common/activate-guard";
 
 @NgModule({
     imports: [MatButtonModule, MatCheckboxModule],
@@ -12,4 +13,10 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 })
 export class AppComponent {
   title = 'app';
+  constructor(private activator: CanActivateViaAuthGuard){};
+
+  canActivate(){
+    this.activator.canActivate()
+  }
+
 }

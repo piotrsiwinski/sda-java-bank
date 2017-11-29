@@ -10,6 +10,7 @@ import {RegisterService} from "./bank/register/register.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoginService} from "./bank/login/login.service";
+import {CanActivateViaAuthGuard} from "./common/activate-guard";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {LoginService} from "./bank/login/login.service";
     MatButtonModule, MatIconModule, MatListModule, MatSidenavModule,
 
   ],
-  providers: [RegisterService, LoginService],
+  providers: [RegisterService, LoginService, CanActivateViaAuthGuard],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
