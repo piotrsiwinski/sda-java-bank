@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
 @Injectable()
 export class LoginService {
 
-  baseURL = 'http://localhost:8080/api/v1/login';
+  baseURL = 'http://localhost:8080/login';
 
   constructor(private http: HttpClient) {
 
@@ -15,12 +15,11 @@ export class LoginService {
     let params = new HttpParams()
       .set("login", formData.login)
       .set("password", formData.password)
+    let headers = new HttpHeaders().set('Content-type', 'application/x-www-form-urlencoded');
+    const postData = `username=${encodeURIComponent(formData.login)}&password=${encodeURIComponent(formData.password)}`;
 
-    return this.http.post(this.baseURL, {params: params}, {observe: 'response'}).subscribe(
-      response => {
-        console.log(response.status);
-      }
-    );
+    return this.http
+      .post(this.baseURL, postData, {headers: headers, observe: 'response'});
   }
 
 

@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit = function (formData) {
     console.log(formData);
-    this.service.login(formData);
+    this.service
+      .login(formData)
+      .subscribe(resp => console.log(JSON.stringify(resp, null, 2)));
   }
 
 }
