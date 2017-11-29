@@ -14,6 +14,7 @@ public class RestLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication)
             throws IOException, ServletException {
+        httpServletResponse.getWriter().write("JSESSIONID=" + httpServletRequest.getSession().getId());
         httpServletResponse.setStatus(200);
     }
 }
