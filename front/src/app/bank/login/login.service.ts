@@ -16,7 +16,7 @@ export class LoginService {
       .set("login", formData.login)
       .set("password", formData.password)
     let headers = new HttpHeaders().set('Content-type', 'application/x-www-form-urlencoded');
-    const postData = `username=${encodeURIComponent(formData.login)}&password=${encodeURIComponent(formData.password)}`;
+    const postData = `username=${encodeURIComponent(formData.login)}&password=${encodeURIComponent(formData.password)}&submit`;
 
     return this.http
       .post(this.baseURL, postData, {headers: headers, observe: 'response'});
