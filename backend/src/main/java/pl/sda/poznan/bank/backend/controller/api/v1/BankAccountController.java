@@ -3,9 +3,9 @@ package pl.sda.poznan.bank.backend.controller.api.v1;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.sda.poznan.bank.backend.model.BankAccount;
+import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.service.impl.BankAccountServiceImpl;
 import pl.sda.poznan.bank.backend.service.OperationHistoryService;
 import pl.sda.poznan.bank.backend.service.UserService;
@@ -29,6 +29,12 @@ public class BankAccountController {
         this.bankAccountService = bankAccountService;
         this.history = history;
         this.userService = userService;
+    }
+
+    @GetMapping("/{user}")
+    public ResponseEntity<Object> getBankAccountBalanceByUser(@PathVariable("user") User user) {
+        BankAccount byUser = bankAccountService.findByUser(user);
+        return ResponseEntity.status(201).body(byUser);
     }
 
     @PostMapping(path = "/payment", consumes = "application/json")

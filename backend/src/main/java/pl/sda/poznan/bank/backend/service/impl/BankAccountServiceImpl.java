@@ -7,6 +7,7 @@ import pl.sda.poznan.bank.backend.exception.OperationException;
 import pl.sda.poznan.bank.backend.model.BankAccount;
 import pl.sda.poznan.bank.backend.model.History;
 import pl.sda.poznan.bank.backend.model.OperationType;
+import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.service.BankAccountService;
@@ -98,6 +99,11 @@ public class BankAccountServiceImpl implements BankAccountService {
         historyRepository.save(history);
         return true;
 
+    }
+
+    @Override
+    public BankAccount findByUser(User user) {
+        return (BankAccount) user.getBankAccount();
     }
 }
 
