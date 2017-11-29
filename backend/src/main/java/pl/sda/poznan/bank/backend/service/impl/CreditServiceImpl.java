@@ -2,6 +2,8 @@ package pl.sda.poznan.bank.backend.service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.poznan.bank.backend.exception.OperationException;
@@ -23,6 +25,8 @@ public class CreditServiceImpl implements CreditService {
     private UserRepository userRepository;
     private CreditRepository creditRepository;
     private InterestServiceImpl interestService;
+    private TaskScheduler taskScheduler;
+    private CronTrigger cronTrigger;
 
 
     @Autowired
@@ -54,7 +58,7 @@ public class CreditServiceImpl implements CreditService {
         LocalDate endCreditDate = LocalDate.parse(endCreditDateBeforeParsing);
         credit.setEndCreditDate(endCreditDate);
 
-        double creditBalance= Double.parseDouble(viewModel.getCreditBalance());
+        double creditBalance = Double.parseDouble(viewModel.getCreditBalance());
         credit.setCreditBalance(creditBalance);
 
         int installment = Integer.parseInt(viewModel.getInstallment());
@@ -67,16 +71,20 @@ public class CreditServiceImpl implements CreditService {
         return true;
     }
 
-//    @Scheduled(cron = "0 0 8 10 * ?")
-@Override
-public void CreditInstallment(long id){
-    Credit credit = creditRepository.findOne(id);
-    Double creditBalance = credit.getCreditBalance();
-    Double interestValue = interestService.credtInterestCounter(credit);
-    creditBalance -= creditBalance / interestValue;
+    @Override
+    public Runnable CreditInstallment(long id) {
+        Credit credit = creditRepository.findOne(id);
+        Double creditBalance = credit.getCreditBalance();
+        Double interestValue = interestService.credtInterestCounter(credit);
+        creditBalance -= creditBalance / interestValue;
+        return new Thread();
 
     }
 
+    public void CronCreditInstallment(long id){
+
+    taskScheduler.schedule(CreditInstallment(id),cronTrigger = new CronTrigger( "0 0 8 10 * ?"));
+    }
 
 }
 
