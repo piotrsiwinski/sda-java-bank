@@ -6,6 +6,6 @@ import pl.sda.poznan.bank.backend.model.BankAccount;
 
 public interface BankAccountRepository extends CrudRepository<BankAccount, Long> {
 
-   BankAccount findByAccountNumber(String AccountNumber);
+   BankAccount findByAccountNumber(long AccountNumber);
 
 }

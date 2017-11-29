@@ -67,6 +67,12 @@ public class CreditServiceImpl implements CreditService {
         credit.setUser(userRepository.findById(id).orElse(null));
 
         creditRepository.save(credit);
+        taskScheduler.schedule(() -> {
+            Credit credit = creditRepository.findOne(id);
+            Double creditBalance = credit.getCreditBalance();
+            Double interestValue = interestService.credtInterestCounter(credit);
+            creditBalance -= creditBalance / interestValue;
+        }, cronTrigger = new CronTrigger("0 0 8 10 * ?"));
 
         return true;
     }
@@ -83,7 +89,7 @@ public class CreditServiceImpl implements CreditService {
 
     public void CronCreditInstallment(long id){
 
-    taskScheduler.schedule(CreditInstallment(id),cronTrigger = new CronTrigger( "0 0 8 10 * ?"));
+
     }
 
 }

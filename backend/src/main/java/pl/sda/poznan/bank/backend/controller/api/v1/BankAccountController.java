@@ -3,9 +3,11 @@ package pl.sda.poznan.bank.backend.controller.api.v1;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.sda.poznan.bank.backend.model.BankAccount;
+import pl.sda.poznan.bank.backend.model.History;
+import pl.sda.poznan.bank.backend.model.User;
+import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 import pl.sda.poznan.bank.backend.service.impl.BankAccountServiceImpl;
 import pl.sda.poznan.bank.backend.service.OperationHistoryService;
 import pl.sda.poznan.bank.backend.service.UserService;
@@ -13,6 +15,7 @@ import pl.sda.poznan.bank.backend.web.viewmodel.PaymentAndPayoffVM;
 import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -22,13 +25,23 @@ public class BankAccountController {
     private BankAccountServiceImpl bankAccountService;
     private OperationHistoryService history;
     private UserService userService;
+    private BankAccountRepository bankAccountRepository;
 
     public BankAccountController(OperationHistoryService historyService,
                                  BankAccountServiceImpl bankAccountService,
-                                 UserService userService) {
+                                 UserService userService, BankAccountRepository bankAccountRepository) {
         this.bankAccountService = bankAccountService;
         this.history = history;
         this.userService = userService;
+        this.bankAccountRepository = bankAccountRepository;
+
+    }
+
+
+    @GetMapping("/{user}")
+    public ResponseEntity<Object> getBankAccountBalanceByUser(@PathVariable("user") User user) {
+        BankAccount byUser = bankAccountService.findByUser(user);
+        return ResponseEntity.status(201).body(byUser);
     }
 
     @PostMapping(path = "/payment", consumes = "application/json")

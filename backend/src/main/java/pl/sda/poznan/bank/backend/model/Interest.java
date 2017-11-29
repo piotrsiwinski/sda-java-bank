@@ -20,6 +20,7 @@ public class Interest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Double interestInPercent;
+    @OneToOne
     private Investment investmentBalance;
     private AccountType accountType;
 }

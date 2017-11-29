@@ -24,6 +24,7 @@ public class Investment {
     private LocalDate endInvestmentDate;
     @ManyToOne
     private User user;
+
     private Double investmentBalance;
     @OneToOne
     private Interest interest;
