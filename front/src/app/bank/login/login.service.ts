@@ -19,7 +19,7 @@ export class LoginService {
     const postData = `username=${encodeURIComponent(formData.login)}&password=${encodeURIComponent(formData.password)}&submit`;
 
     return this.http
-      .post(this.baseURL, postData, {headers: headers, observe: 'response'});
+      .post(this.baseURL, postData, {headers: headers, observe: 'response', responseType: 'text'});
   }
 
 
