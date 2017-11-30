@@ -50,10 +50,4 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public User findUserByUsername(String username) {
-        Optional<User> byLogin = userRepository.findByLogin(username);
-        return byLogin.orElse(null);
-    }
-
 }

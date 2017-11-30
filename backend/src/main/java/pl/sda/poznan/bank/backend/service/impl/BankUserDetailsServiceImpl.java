@@ -2,15 +2,15 @@ package pl.sda.poznan.bank.backend.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.exception.UserNotFoundException;
 import pl.sda.poznan.bank.backend.model.BankUserPrincipal;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
+import pl.sda.poznan.bank.backend.service.BankUserDetailsService;
 
 @Service
-public class BankUserDetailsServiceImpl implements UserDetailsService {
+public class BankUserDetailsServiceImpl implements BankUserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
@@ -25,5 +25,15 @@ public class BankUserDetailsServiceImpl implements UserDetailsService {
             throw new UserNotFoundException("Can't find user");
         }
         return new BankUserPrincipal(user);
+    }
+
+    @Override
+    public User findUserByLogin(String login){
+        User user = userRepository.findByLogin(login).orElse(null);
+        if (user == null) {
+            throw new UserNotFoundException("Can't find user");
+        }
+        user.setPassword(null);
+        return user;
     }
 }
