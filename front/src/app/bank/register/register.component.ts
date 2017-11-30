@@ -29,11 +29,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit = function (data) {
-    console.log(data);
-    this.registerService.register(data)
-      .subscribe(data => {
-          console.log(data);
+  onSubmit = function (formData) {
+    console.log(`DATA: ${JSON.stringify(formData, null, 2)}`);
+    console.log(`DATA: ${JSON.stringify(this.registerForms.value)}`);
+    this.registerService.register(this.registerForms.value)
+      .subscribe(response => {
+          console.log(response);
           this.router.navigate(['/']);
         },
         error => {
