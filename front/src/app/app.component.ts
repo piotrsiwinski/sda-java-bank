@@ -24,11 +24,13 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
-    this.loggedUser = {
-      firstName: 'Jan',
-      lastName: 'Kowalski',
-      email: 'test@wp.pl',
-    };
+  }
+
+  private getUserData() {
+    this.authService.getUserDetails().subscribe(data => {
+      console.log(data);
+      this.loggedUser = {firstName: 'test', lastName: '123', email: 'email@wp.pl'};
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -36,12 +38,12 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
   }
 
   ngDoCheck() {
-    console.log("APP COMPONENT ngDoCheck");
     this.isLoggedIn = this.authService.isAuthenticated();
   }
 
   logout() {
     this.authService.logout();
+    this.loggedUser = null;
     this.router.navigate(['/login']);
 
   }

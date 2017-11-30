@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         resp => {
           console.log(JSON.stringify(resp, null, 2));
-          localStorage.setItem("session", resp.body);
+          localStorage.setItem("session", 'true');
           this.router.navigate(['/my-finances']);
         },
         err => {

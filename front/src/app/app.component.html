@@ -3,13 +3,14 @@
     <div class="menu-header">
 
       <img src="assets/logo-small.png" class="logo-center" alt="Responsive image">
-      <span class="login-info">{{loggedUser.firstName}} {{loggedUser.lastName}}</span>
+      <span *ngIf="loggedUser" class="login-info">{{loggedUser.firstName}} {{loggedUser.lastName}}</span>
     </div>
     <mat-list *ngIf="isLoggedIn">
       <mat-list-item [routerLink]="['/my-finances']"> Moje finanse</mat-list-item>
       <mat-list-item [routerLink]="['/new-transaction']"> Wykonaj przelew</mat-list-item>
       <mat-list-item [routerLink]="['/history']"> Historia</mat-list-item>
       <mat-list-item [routerLink]="['/settings']"> Ustawienia konta</mat-list-item>
+      <!--<mat-list-item (click)="getUserData()"> Test</mat-list-item>-->
       <span class="spacer"></span>
       <mat-list-item (click)="logout()"> Wyloguj</mat-list-item>
     </mat-list>

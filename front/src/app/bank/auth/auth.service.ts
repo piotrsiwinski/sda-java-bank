@@ -24,4 +24,8 @@ export class AuthService {
     localStorage.removeItem(this.sessionKey);
     return this.http.post(this.apiUrl, null);
   }
+
+  public getUserDetails() {
+    return this.http.get(`http://localhost:8080/api/v1/me`, {withCredentials: true});
+  }
 }
