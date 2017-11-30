@@ -99,7 +99,7 @@
             <mat-checkbox type="checkbox" name="regulations" id="regulations" [formControl]="registerForms.controls['regulations']" ngModel>Akceptuje <a href="#">regulamin.</a>
             </mat-checkbox>
             <div
-              *ngIf="registerForms.controls['regulations'].valid && registerForms.controls['regulations'].touched"
+              *ngIf="!registerForms.controls['regulations'].valid && registerForms.controls['regulations'].touched"
               class="alert alert-danger">
               <strong>Należy zaakceptować regulamin!</strong>
             </div>
