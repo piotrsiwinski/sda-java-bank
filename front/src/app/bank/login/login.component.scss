@@ -1,5 +1,32 @@
 .loginForm{
   width: 400px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
+}
+
+.unique-text{
+  color:#880e4f;
+}
+
+.unique-text.active{
+  color: #880e4f!important;
+}
+.md-form label{
+  color: #880e4f!important;
+}
+
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search-md]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.md-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #880e4f;
+  box-shadow: 0 1px 0 0 #880e4f;
+}
+.loginForm h2{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.logo-center{
+  vertical-align: middle;
+  border-style: none;
+  display: block;
+  margin: auto;
 }

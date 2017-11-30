@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import pl.sda.poznan.bank.backend.exception.UserNotFoundException;
+import pl.sda.poznan.bank.backend.exception.EmailAlreadyRegisteredException;
 import pl.sda.poznan.bank.backend.model.BankUserPrincipal;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
@@ -20,7 +20,7 @@ public class BankUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) {
-        User user = userRepository.findByLogin(login).orElse(null);
+        User user = userRepository.findByLogin(login).orElseThrow(EmailAlreadyRegisteredException::new);
         return new BankUserPrincipal(user);
     }
 }

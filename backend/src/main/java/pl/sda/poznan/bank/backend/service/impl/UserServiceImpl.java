@@ -6,7 +6,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.exception.EmailAlreadyRegisteredException;
 import pl.sda.poznan.bank.backend.exception.LoginAlreadyRegisteredException;
-import pl.sda.poznan.bank.backend.exception.SdaBankApplicationException;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 import pl.sda.poznan.bank.backend.service.UserService;
@@ -31,14 +30,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(UserRegistrationVM userVM) {
         userRepository.findByEmail(userVM.getEmail()).ifPresent(user -> {
-            throw new EmailAlreadyRegisteredException("");
+            throw new EmailAlreadyRegisteredException();
         });
         userRepository.findByLogin(userVM.getLogin()).ifPresent(u -> {
-            throw new LoginAlreadyRegisteredException("Login already registered");
+            throw new LoginAlreadyRegisteredException();
         });
 
         String encodedPassword = this.passwordEncoder.encode(userVM.getPassword());
         User user = conversionService.convert(userVM, User.class);
+        user.setLogin(userVM.getEmail());
         user.setPassword(encodedPassword);
         userRepository.save(user);
     }

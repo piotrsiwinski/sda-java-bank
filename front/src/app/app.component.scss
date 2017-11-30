@@ -39,26 +39,64 @@ mat-sidenav {
   h2{
     color: red;
   }
-  .login-info{
-    font-size:13px;
-    color: black;
-    font-weight: 500;
-  }
-  margin-left: 15px;
+
+
+  display: block;
   margin-top:20px;
   margin-bottom:40px;
 }
+.login-info{
+  font-size:13px;
+  color: black;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+  margin: auto;
 
+}
 mat-list-item{
   cursor: pointer;
   transition: 0.4s;
 }
 mat-list-item:hover{
-  background: #d8d8d8;
+  background: #9e1f63;
+  color: white!important;
 }
 
 .spacer {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
+}
+
+.brand{
+  font-weight:300;
+}
+.logo-center{
+  vertical-align: middle;
+  border-style: none;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.btnd:active,
+.btnd:focus,
+.btnd.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+:focus {outline:0 !important;}
+
+footer.page-footer .footer-copyright {
+  overflow: hidden;
+  height: 31px;
+  line-height: 21px;
+  color: rgba(255, 255, 255, 0.6);
+  background-color: transparent;
+  text-align: center;
+  font-size: 0.9rem;
 }

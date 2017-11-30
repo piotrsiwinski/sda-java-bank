@@ -1,50 +1,64 @@
-
 <div class="container">
   <div class="row">
-    <div class="col">
-      <div class="registerForm">
-        <form>
-          <p class="h5 text-center mb-4">Rejestracja do SDA - Bank</p>
+    <div class="col-md-6">
+      <div class="vertical-center">
+        <img src="../assets/logo-poziom.png">
+      </div>
+    </div>
+    <div class="col-md-6 ">
+      <div class="registerForm ">
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
+          <h2 class="text-center margin-small">Rejestracja</h2>
+          <div class="row">
+          <div class="col-md-6">
+            <div class="md-form">
+              <i class="fa fa-user prefix unique-text"></i>
+              <input type="text" id="name" name="name" class="form-control" mdbActive required ngModel>
+              <label for="name">Imię</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="md-form">
+              <input type="text" id="lastname" name="lastname" class="form-control" mdbActive required ngModel>
+              <label for="lastname">Nazwisko</label>
+            </div>
+          </div>
+          </div>
+          <div class="md-form">
+            <i class="fa fa-info prefix unique-text"></i>
+            <input type="text" id="pesel" name="pesel" class="form-control" mdbActive required ngModel>
+            <label  for="pesel">Pesel</label>
+          </div>
+          <div class="md-form">
+            <i class="fa fa-envelope prefix unique-text"></i>
+            <input type="email" id="email" name="email" class="form-control validate" mdbActive required ngModel>
+            <label for="email">Email</label>
+            <p *ngIf="" class="error-message">Błąd</p>
+          </div>
 
-          <div class="md-form">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-name" class="form-control" mdbActive>
-            <label for="orangeForm-name">Imię</label>
-          </div>
-          <div class="md-form">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="orangeForm-surename" class="form-control" mdbActive>
-            <label for="orangeForm-surename">Nazwisko</label>
-          </div>
-          <div class="md-form">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="number" id="pesel" class="form-control" mdbActive>
-            <label for="pesel">Pesel</label>
-          </div>
-          <div class="md-form">
-            <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="text" id="orangeForm-email" class="form-control" mdbActive>
-            <label for="orangeForm-email">Email</label>
-          </div>
-
-          <div class="md-form">
-            <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" id="password" class="form-control" mdbActive>
-            <label for="password">Hasło</label>
-          </div>
-          <div class="md-form">
-            <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" id="passwordRepeat" class="form-control" mdbActive>
-            <label for="passwordRepeat">Powtórz hasło</label>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="md-form">
+                <i class="fa fa-lock prefix unique-text"></i>
+                <input type="password" id="password" name="password" class="form-control validate" mdbActive required ngModel>
+                <label data-error="wrong" for="password">Hasło</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="md-form">
+                <input type="password" id="passwordRepeat" name="paswordRepeat" class="form-control validate" mdbActive required ngModel>
+                <label data-error="wrong" for="passwordRepeat">Powtórz hasło</label>
+                <p *ngIf="error" class="error-message">{{error}}</p>
+              </div>
+            </div>
           </div>
 
           <div class="form-group text-center">
-            <input type="checkbox" id="checkbox">
-            <label for="checkbox" class="grey-text">Akceptuje <a href="#">regulamin.</a></label>
+            <mat-checkbox type="checkbox" name="accept" id="accept" ngModel>Akceptuje <a href="#">regulamin.</a></mat-checkbox>
           </div>
 
           <div class="text-center">
-            <button class="btn btn-deep-orange waves-light" (click)="onClick()" mdbRippleRadius>Zarejestruj</button>
+            <button type="submit" value="submit" class="btn btn-unique waves-light" mdbRippleRadius>Zarejestruj</button>
           </div>
 
         </form>

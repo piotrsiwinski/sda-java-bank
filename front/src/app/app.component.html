@@ -1,22 +1,27 @@
 <mat-sidenav-container class="all-wrap" fullscreen>
   <mat-sidenav #sidenav>
     <div class="menu-header">
-      <h2>Menu</h2>
-      <span class="login-info">login@login.pl</span>
+
+      <img src="assets/logo-small.png" class="logo-center" alt="Responsive image">
+      <span *ngIf="loggedUser" class="login-info">{{loggedUser.firstName}} {{loggedUser.lastName}}</span>
     </div>
-    <mat-list>
+    <mat-list *ngIf="isLoggedIn">
       <mat-list-item [routerLink]="['/my-finances']"> Moje finanse</mat-list-item>
       <mat-list-item [routerLink]="['/new-transaction']"> Wykonaj przelew</mat-list-item>
       <mat-list-item [routerLink]="['/history']"> Historia</mat-list-item>
       <mat-list-item [routerLink]="['/settings']"> Ustawienia konta</mat-list-item>
+      <!--<mat-list-item (click)="getUserData()"> Test</mat-list-item>-->
       <span class="spacer"></span>
-      <mat-list-item [routerLink]="['/logout']"> Wyloguj</mat-list-item>
+      <mat-list-item (click)="logout()"> Wyloguj</mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="!isLoggedIn">
+      <mat-list-item [routerLink]="['/login']">Zaloguj</mat-list-item>
     </mat-list>
   </mat-sidenav>
 
   <div class="page-wrap">
     <header role="banner">
-      <mat-toolbar color="warn" >
+      <mat-toolbar class="pink darken-4 white-text" >
         <button
           type="button"
           mat-icon-button
@@ -24,57 +29,32 @@
           title="Open sidenav">
           <mat-icon>menu</mat-icon>
         </button>
-        SDA - Bank
+        <span class="brand ">SDA - Bank</span>
         <span class="spacer"></span>
-        <button mat-button>Click me!</button>
+        <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/register']">Zarejestruj się</button>
+        <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/login']">Zaloguj</button>
+        <button *ngIf="isLoggedIn" mat-button (click)="logout()" >Wyloguj</button>
       </mat-toolbar>
     </header>
     <main class="content">
       <router-outlet></router-outlet>
     </main>
-    <footer>
-      Your sticky footer with a variable height.
+
+    <!--Footer-->
+    <footer class="pink darken-4 page-footer center-on-small-only">
+
+      <!--Copyright-->
+      <div class="footer-copyright">
+        <div class="container-fluid">
+          © 2017 Copyright: <a href="https://www.MDBootstrap.com"> SDA | JAVAPOZ4 </a>
+
+        </div>
+      </div>
+      <!--/.Copyright-->
+
     </footer>
+    <!--/.Footer-->
+
+
   </div>
 </mat-sidenav-container>
-
-<!--<nav class="navbar navbar-expand-lg navbar-light blue-grey lighten-5">-->
-  <!--&lt;!&ndash; Navbar brand &ndash;&gt;-->
-  <!--<a class="navbar-brand" href="#">SDA - Bank</a>-->
-
-  <!--&lt;!&ndash; Collapse button &ndash;&gt;-->
-  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"-->
-          <!--aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>-->
-
-  <!--&lt;!&ndash; Collapsible content &ndash;&gt;-->
-  <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-
-    <!--&lt;!&ndash; Links &ndash;&gt;-->
-    <!--<ul class="navbar-nav ml-auto">-->
-      <!--<li class="nav-item active">-->
-        <!--<a routerLink="/home" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a  routerLink="/new-transaction" class="nav-link" href="#">Wykonaj transakcje</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a routerLink="/history" class="nav-link" href="#">Historia transakcji</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a routerLink="/settings" class="nav-link" href="#">Ustawienia konta</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a routerLink="/register" class="nav-link" href="#">Register</a>-->
-      <!--</li>-->
-      <!--<li class="nav-item">-->
-        <!--<a routerLink="/login" class="nav-link" href="#">Login</a>-->
-      <!--</li>-->
-
-    <!--</ul>-->
-    <!--&lt;!&ndash; Links &ndash;&gt;-->
-  <!--</div>-->
-  <!--&lt;!&ndash; Collapsible content &ndash;&gt;-->
-
-<!--</nav>-->
-
-

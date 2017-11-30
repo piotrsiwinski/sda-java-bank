@@ -6,16 +6,16 @@ import {SettingsComponent} from "./bank/settings/settings.component";
 import {NewTransactionComponent} from "./bank/new-transaction/new-transaction.component";
 import {MyFinancesComponent} from "./bank/my-finances/my-finances.component";
 import {HistoryComponent} from "./bank/history/history.component";
-import {AppComponent} from "./app.component";
+import {CanActivateViaAuthGuard} from "./common/activate-guard";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full',component: LoginComponent},
   { path: 'login',  component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'settings',     component: SettingsComponent },
-  { path: 'new-transaction',     component: NewTransactionComponent },
-  { path: 'my-finances',     component: MyFinancesComponent },
-  { path: 'history',     component: HistoryComponent }
+  { path: 'settings',     component: SettingsComponent, canActivate: [CanActivateViaAuthGuard]  },
+  { path: 'new-transaction',     component: NewTransactionComponent, canActivate: [CanActivateViaAuthGuard]  },
+  { path: 'my-finances',     component: MyFinancesComponent, canActivate: [CanActivateViaAuthGuard] },
+  { path: 'history',     component: HistoryComponent, canActivate: [CanActivateViaAuthGuard]  }
 ];
 
 @NgModule({
