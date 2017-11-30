@@ -2,12 +2,14 @@ package pl.sda.poznan.bank.backend.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.sda.poznan.bank.backend.exception.EmailAlreadyRegisteredException;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 public class BankUserPrincipal implements UserDetails {
-    private transient User user;
+    private User user;
 
     public BankUserPrincipal(User user) {
         this.user = user;
@@ -25,7 +27,7 @@ public class BankUserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getLogin();
+        return Optional.of(user.getLogin()).orElseThrow(EmailAlreadyRegisteredException::new);
     }
 
     @Override
