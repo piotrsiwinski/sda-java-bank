@@ -6,11 +6,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.poznan.bank.backend.exception.EmailAlreadyRegisteredException;
 import pl.sda.poznan.bank.backend.exception.LoginAlreadyRegisteredException;
-import pl.sda.poznan.bank.backend.exception.SdaBankApplicationException;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.UserRepository;
 import pl.sda.poznan.bank.backend.service.UserService;
 import pl.sda.poznan.bank.backend.web.viewmodel.UserRegistrationVM;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,6 +48,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUser(long id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        Optional<User> byLogin = userRepository.findByLogin(username);
+        return byLogin.orElse(null);
     }
 
 }

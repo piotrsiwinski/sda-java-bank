@@ -24,4 +24,5 @@ export class AuthService {
     localStorage.removeItem(this.sessionKey);
     return this.http.post(this.apiUrl, null);
   }
+
 }

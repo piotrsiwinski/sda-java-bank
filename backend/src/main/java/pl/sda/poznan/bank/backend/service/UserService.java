@@ -7,6 +7,7 @@ public interface UserService {
 
     void saveUser(UserRegistrationVM userVM);
     User findUser(long id);
+    User findUserByUsername(String username);
 
 
 }
