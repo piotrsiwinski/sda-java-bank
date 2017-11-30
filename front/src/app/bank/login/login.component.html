@@ -15,8 +15,8 @@
             <input type="password" id="password" name="password" ngModel mdbActive>
             <label for="password">Hasło</label>
           </div>
-          <div *ngIf="error">
-            <p>{{error}}</p>
+          <div *ngIf="error" class="alert alert-danger">
+            <strong>{{error}}</strong>
           </div>
           <div class="text-center">
             <button type="submit" value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Zaloguj</button>
