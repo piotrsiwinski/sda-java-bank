@@ -5,4 +5,5 @@ export class RegisterModel {
   password: string;
   passwordRepeat: string;
   pesel: string;
+  login: string;
 }

@@ -9,6 +9,7 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   register(user: RegisterModel) {
+    user.login = user.email;
     console.log(user);
     let headers = new HttpHeaders().set('Content-type', 'application/json');
 
