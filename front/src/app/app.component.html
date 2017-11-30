@@ -3,15 +3,18 @@
     <div class="menu-header">
 
       <img src="assets/logo-small.png" class="logo-center" alt="Responsive image">
-      <span class="login-info">login@login.pl</span>
+      <span class="login-info">{{loggedUser.firstName}} {{loggedUser.lastName}}</span>
     </div>
-    <mat-list>
+    <mat-list *ngIf="isLoggedIn">
       <mat-list-item [routerLink]="['/my-finances']"> Moje finanse</mat-list-item>
       <mat-list-item [routerLink]="['/new-transaction']"> Wykonaj przelew</mat-list-item>
       <mat-list-item [routerLink]="['/history']"> Historia</mat-list-item>
       <mat-list-item [routerLink]="['/settings']"> Ustawienia konta</mat-list-item>
       <span class="spacer"></span>
-      <mat-list-item [routerLink]="['/logout']"> Wyloguj</mat-list-item>
+      <mat-list-item (click)="logout()"> Wyloguj</mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="!isLoggedIn">
+      <mat-list-item [routerLink]="['/login']">Zaloguj</mat-list-item>
     </mat-list>
   </mat-sidenav>
 
@@ -29,7 +32,7 @@
         <span class="spacer"></span>
         <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/register']">Zarejestruj się</button>
         <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/login']">Zaloguj</button>
-        <button *ngIf="isLoggedIn" mat-button [routerLink]="['/logout']">Wyloguj</button>
+        <button *ngIf="isLoggedIn" mat-button (click)="logout()" >Wyloguj</button>
       </mat-toolbar>
     </header>
     <main class="content">
