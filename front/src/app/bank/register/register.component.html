@@ -10,55 +10,102 @@
         <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
           <h2 class="text-center margin-small">Rejestracja</h2>
           <div class="row">
-          <div class="col-md-6">
-            <div class="md-form">
-              <i class="fa fa-user prefix unique-text"></i>
-              <input type="text" id="name" name="name" class="form-control" mdbActive required ngModel>
-              <label for="name">Imię</label>
+
+            <div class="col-md-6"
+                 [ngClass]="{'has-error':!registerForms.controls['firstName'].valid && registerForms.controls['firstName'].touched}">
+              <div class="md-form">
+                <i class="fa fa-user prefix unique-text"></i>
+                <input type="text" id="firstName" name="firstName" [formControl]="registerForms.controls['firstName']"
+                       class="form-control" mdbActive required ngModel>
+                <label for="firstName">Imię</label>
+                <div
+                  *ngIf="registerForms.controls['firstName'].hasError('required') && registerForms.controls['firstName'].touched"
+                  class="alert alert-danger">
+                  <strong>Podaj imię!</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6"
+                 [ngClass]="{'has-error':!registerForms.controls['lastName'].valid && registerForms.controls['lastName'].touched}">
+              <div class="md-form">
+                <input type="text" id="lastName" name="lastName" [formControl]="registerForms.controls['lastName']" class="form-control" mdbActive required ngModel>
+                <label for="lastName">Nazwisko</label>
+                <div
+                  *ngIf="registerForms.controls['lastName'].hasError('required') && registerForms.controls['lastName'].touched"
+                  class="alert alert-danger">
+                  <strong>Podaj nazwisko!</strong>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="md-form">
-              <input type="text" id="lastname" name="lastname" class="form-control" mdbActive required ngModel>
-              <label for="lastname">Nazwisko</label>
-            </div>
-          </div>
-          </div>
-          <div class="md-form">
+
+          <div class="md-form" [ngClass]="{'has-error':!registerForms.controls['pesel'].valid && registerForms.controls['pesel'].touched}">
             <i class="fa fa-info prefix unique-text"></i>
-            <input type="text" id="pesel" name="pesel" class="form-control" mdbActive required ngModel>
-            <label  for="pesel">Pesel</label>
+            <input type="text" id="pesel" name="pesel" [formControl]="registerForms.controls['pesel']" class="form-control" mdbActive required ngModel>
+            <label for="pesel">Pesel</label>
+            <div
+              *ngIf="registerForms.controls['pesel'].touched && registerForms.controls['pesel'].hasError('minlength')"
+              class="alert alert-danger">
+              <strong>Podaj pesel!</strong>
+            </div>
           </div>
-          <div class="md-form">
+
+          <div class="md-form" [ngClass]="{'has-error':!registerForms.controls['email'].valid && registerForms.controls['email'].touched}">
             <i class="fa fa-envelope prefix unique-text"></i>
-            <input type="email" id="email" name="email" class="form-control validate" mdbActive required ngModel>
+            <input type="email" id="email" name="email" [formControl]="registerForms.controls['email']" class="form-control" mdbActive required ngModel>
             <label for="email">Email</label>
-            <p *ngIf="" class="error-message">Błąd</p>
+            <div
+              *ngIf="registerForms.controls['email'].hasError('required') && registerForms.controls['email'].touched"
+              class="alert alert-danger">
+              <strong>Podaj email!</strong>
+            </div>
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6"
+                 [ngClass]="{'has-error':!registerForms.controls['password'].valid && registerForms.controls['password'].touched}">
               <div class="md-form">
                 <i class="fa fa-lock prefix unique-text"></i>
-                <input type="password" id="password" name="password" class="form-control validate" mdbActive required ngModel>
+
+                <input type="password" id="password" name="password"
+                       [formControl]="registerForms.controls['password']" class="form-control validate" mdbActive
+                       required ngModel>
                 <label data-error="wrong" for="password">Hasło</label>
+
+                <div
+                  *ngIf="registerForms.controls['password'].hasError('required') && registerForms.controls['password'].touched"
+                  class="alert alert-danger">
+                  <strong>Podaj hasło!</strong>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="col-md-6" [ngClass]="{'has-error':!registerForms.controls['passwordRepeat'].valid && registerForms.controls['passwordRepeat'].touched}">
               <div class="md-form">
-                <input type="password" id="passwordRepeat" name="paswordRepeat" class="form-control validate" mdbActive required ngModel>
+                <input type="password" id="passwordRepeat" name="paswordRepeat" [formControl]="registerForms.controls['passwordRepeat']" class="form-control validate" mdbActive
+                       required ngModel>
                 <label data-error="wrong" for="passwordRepeat">Powtórz hasło</label>
-                <p *ngIf="error" class="error-message">{{error}}</p>
+                <div
+                  *ngIf="registerForms.controls['passwordRepeat'].hasError('required') && registerForms.controls['passwordRepeat'].touched"
+                  class="alert alert-danger">
+                  <strong>Powtórz hasło!</strong>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="form-group text-center">
-            <mat-checkbox type="checkbox" name="accept" id="accept" ngModel>Akceptuje <a href="#">regulamin.</a></mat-checkbox>
+            <mat-checkbox type="checkbox" name="accept" id="accept" ngModel>Akceptuje <a href="#">regulamin.</a>
+            </mat-checkbox>
+          </div>
+
+          <div *ngIf="error" class="alert alert-danger">
+            <strong>{{error}}</strong>
           </div>
 
           <div class="text-center">
-            <button type="submit" value="submit" class="btn btn-unique waves-light" mdbRippleRadius>Zarejestruj</button>
+            <button type="submit" value="submit" [disabled]="!registerForms.valid" class="btn btn-unique waves-light" mdbRippleRadius>Zarejestruj</button>
           </div>
 
         </form>

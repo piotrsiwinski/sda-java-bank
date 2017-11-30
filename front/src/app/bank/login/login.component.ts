@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/my-finances']);
         },
         err => {
-          this.error = "Zle dane logowania";
+          this.error = "Błędny login lub hasło";
           console.log(JSON.stringify(err, null, 2))
         });
   }
