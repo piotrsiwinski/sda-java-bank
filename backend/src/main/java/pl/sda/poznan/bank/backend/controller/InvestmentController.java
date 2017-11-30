@@ -5,9 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.poznan.bank.backend.model.Investment;
 import pl.sda.poznan.bank.backend.service.InvestmentService;
+
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -35,7 +38,10 @@ public class InvestmentController {
     }
 
     @PostMapping("/addInvestment")
-    public ResponseEntity<List<Investment>> addInvestment (@ModelAttribute Investment investment) {
+    public ResponseEntity addInvestment (@RequestBody @Valid BindingResult bindingResult, @ModelAttribute Investment investment) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
         investmentService.saveInvestment(investment);
         List<Investment> allInvestments = investmentService.findAllInvestments();
         return new ResponseEntity<>(allInvestments, HttpStatus.OK);
@@ -49,7 +55,10 @@ public class InvestmentController {
     }
 
     @PostMapping("/updateInvestment")
-    public ResponseEntity<List<Investment>> updateInvestment(@ModelAttribute long id, Investment investment) {
+    public ResponseEntity updateInvestment(@RequestBody @Valid BindingResult bindingResult, @ModelAttribute long id, Investment investment) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
         investmentService.updateInvestment(id, investment);
         List<Investment> allInvestments = investmentService.findAllInvestments();
         return new ResponseEntity<>(allInvestments, HttpStatus.OK);
