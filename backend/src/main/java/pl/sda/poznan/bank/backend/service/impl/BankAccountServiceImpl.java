@@ -1,6 +1,7 @@
 package pl.sda.poznan.bank.backend.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.poznan.bank.backend.exception.OperationException;
@@ -27,7 +28,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     private BankAccountService bankAccountService;
 
     @Autowired
-    public BankAccountServiceImpl(HistoryRepository historyRepository, BankAccountRepository bankAccountRepository, BankAccountService bankAccountService) {
+    public BankAccountServiceImpl(HistoryRepository historyRepository,
+                                  BankAccountRepository bankAccountRepository,
+                                  @Lazy BankAccountService bankAccountService) {
         this.historyRepository = historyRepository;
         this.bankAccountRepository = bankAccountRepository;
         this.bankAccountService = bankAccountService;
@@ -37,7 +40,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Transactional(rollbackFor = OperationException.class)
     @Override
     public Boolean payment(PaymentAndPayoffVM viewModel) {
-        BankAccount myBankAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
+        String sourceAccountNumber = viewModel.getSourceAccountNumber();
+        Long sourceAccountNumberParsed = Long.valueOf(sourceAccountNumber);
+        BankAccount myBankAccount = bankAccountRepository.findByAccountNumber(sourceAccountNumberParsed);
         double amount = viewModel.getAmount();
         double balance = myBankAccount.getBalance();
 
@@ -58,7 +63,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Transactional(rollbackFor = OperationException.class)
     @Override
     public Boolean payoff(PaymentAndPayoffVM viewModel) {
-        BankAccount myBankAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
+        String sourceAccountNumber = viewModel.getSourceAccountNumber();
+        Long sourceAccountNumberParsed = Long.valueOf(sourceAccountNumber);
+        BankAccount myBankAccount = bankAccountRepository.findByAccountNumber(sourceAccountNumberParsed);
         double amount = viewModel.getAmount();
         double balance = myBankAccount.getBalance();
 
@@ -81,9 +88,13 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Transactional(rollbackFor = OperationException.class)
     @Override
     public Boolean transfer(TransferVM viewModel) throws OperationException {
-        BankAccount myAccount = bankAccountRepository.findByAccountNumber(viewModel.getSourceAccountNumber());
-        BankAccount destinationAccount = bankAccountRepository.findByAccountNumber(viewModel.getDestinationAccountNumber());
-        double myBalance = myAccount.getBalance();
+        String sourceAccountNumber = viewModel.getSourceAccountNumber();
+        Long sourceAccountNumberParsed = Long.valueOf(sourceAccountNumber);
+        BankAccount myBankAccount = bankAccountRepository.findByAccountNumber(sourceAccountNumberParsed);
+        String destinationAccountNumber = viewModel.getDestinationAccountNumber();
+        Long destinationAccountNumberParsed = Long.valueOf(destinationAccountNumber);
+        BankAccount destinationAccount = bankAccountRepository.findByAccountNumber(destinationAccountNumberParsed);
+        double myBalance = myBankAccount.getBalance();
         double amount = viewModel.getAmount();
         double destinationBalance = destinationAccount.getBalance();
 
@@ -91,7 +102,7 @@ public class BankAccountServiceImpl implements BankAccountService {
             throw new OperationException("Kwota jest mniejsza od zera");
         }
 
-        if (myAccount.getBalance() < amount) {
+        if (myBankAccount.getBalance() < amount) {
             throw new OperationException("Za mało srodków na koncie");
         }
 

@@ -13,7 +13,7 @@ public class InterestServiceImpl implements InterestService {
 
 
     @Override
-    public Double credtInterestCounter(Credit credit) {
+    public Double creditInterestCounter(Credit credit) {
 
         Double interestValue;
         Double bankAccountBalance = credit.getCreditBalance();

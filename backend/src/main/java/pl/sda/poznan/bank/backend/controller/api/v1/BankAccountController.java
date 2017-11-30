@@ -1,5 +1,6 @@
 package pl.sda.poznan.bank.backend.controller.api.v1;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import pl.sda.poznan.bank.backend.model.BankAccount;
 import pl.sda.poznan.bank.backend.model.History;
 import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
+import pl.sda.poznan.bank.backend.service.BankAccountService;
 import pl.sda.poznan.bank.backend.service.impl.BankAccountServiceImpl;
 import pl.sda.poznan.bank.backend.service.OperationHistoryService;
 import pl.sda.poznan.bank.backend.service.UserService;
@@ -22,14 +24,15 @@ import java.util.List;
 @RequestMapping("/api/v1/bank")
 public class BankAccountController {
 
-    private BankAccountServiceImpl bankAccountService;
+    private BankAccountService bankAccountService;
     private OperationHistoryService history;
     private UserService userService;
     private BankAccountRepository bankAccountRepository;
 
     public BankAccountController(OperationHistoryService historyService,
-                                 BankAccountServiceImpl bankAccountService,
-                                 UserService userService, BankAccountRepository bankAccountRepository) {
+                                 @Lazy BankAccountService bankAccountService,
+                                 @Lazy UserService userService,
+                                 @Lazy BankAccountRepository bankAccountRepository) {
         this.bankAccountService = bankAccountService;
         this.history = history;
         this.userService = userService;
