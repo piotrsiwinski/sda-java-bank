@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoginService} from "./bank/login/login.service";
 import {AuthService} from "./bank/auth/auth.service";
 import {CanActivateViaAuthGuard} from "./common/activate-guard";
+import {NewTransactionService} from "./bank/new-transaction/new-transaction.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {CanActivateViaAuthGuard} from "./common/activate-guard";
     MatButtonModule, MatIconModule, MatListModule, MatSidenavModule,
 
   ],
-  providers: [RegisterService, LoginService, AuthService, CanActivateViaAuthGuard],
+  providers: [RegisterService, LoginService, AuthService, CanActivateViaAuthGuard, NewTransactionService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
