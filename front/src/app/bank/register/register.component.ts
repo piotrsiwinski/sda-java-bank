@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       passwordRepeat: ['', Validators.required],
       pesel: ['', Validators.minLength(11)],
+      regulations: [false, Validators.requiredTrue]
     });
   }
 
@@ -42,6 +43,4 @@ export class RegisterComponent implements OnInit {
           this.error = 'Podany użytkownik już istnieje';
         });
   }
-
-
 }

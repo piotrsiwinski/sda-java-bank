@@ -6,4 +6,5 @@ export class RegisterModel {
   passwordRepeat: string;
   pesel: string;
   login: string;
+  regulations: boolean;
 }
