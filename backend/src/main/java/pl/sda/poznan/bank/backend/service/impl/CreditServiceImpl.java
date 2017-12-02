@@ -68,7 +68,7 @@ public class CreditServiceImpl implements CreditService {
         double creditBalance = Double.parseDouble(viewModel.getCreditBalance());
         credit.setCreditBalance(creditBalance);
 
-        int installment = Integer.parseInt(viewModel.getInstallment());
+        int installment = Integer.parseInt(viewModel.getInstallment());K
         credit.setInstallment(installment);
 
         credit.setUser(userRepository.findById(id).orElse(null));
