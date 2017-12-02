@@ -98,6 +98,13 @@
                   class="alert alert-danger">
                   <strong>Podaj hasło!</strong>
                 </div>
+
+                <div
+                  *ngIf="registerForms.controls['password'].touched && registerForms.controls['password'].hasError('minlength')"
+                  class="alert alert-danger">
+                  <strong>Hasło musi zawierać więcej niż 8 znaków!</strong>
+                </div>
+
               </div>
             </div>
 
