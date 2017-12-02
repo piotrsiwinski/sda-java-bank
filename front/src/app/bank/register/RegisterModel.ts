@@ -3,4 +3,8 @@ export class RegisterModel {
   lastName: string;
   email: string;
   password: string;
+  passwordRepeat: string;
+  pesel: string;
+  login: string;
+  regulations: boolean;
 }
