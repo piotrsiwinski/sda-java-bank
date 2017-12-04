@@ -7,13 +7,17 @@ import pl.sda.poznan.bank.backend.exception.OperationException;
 import pl.sda.poznan.bank.backend.model.BankAccount;
 import pl.sda.poznan.bank.backend.model.History;
 import pl.sda.poznan.bank.backend.model.OperationType;
+import pl.sda.poznan.bank.backend.model.User;
 import pl.sda.poznan.bank.backend.repository.BankAccountRepository;
 import pl.sda.poznan.bank.backend.repository.HistoryRepository;
 import pl.sda.poznan.bank.backend.service.BankAccountService;
+import pl.sda.poznan.bank.backend.service.BankUserDetailsService;
 import pl.sda.poznan.bank.backend.web.viewmodel.PaymentAndPayoffVM;
 import pl.sda.poznan.bank.backend.web.viewmodel.TransferVM;
 
+import java.security.Principal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class BankAccountServiceImpl implements BankAccountService {
@@ -23,10 +27,15 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     private BankAccountRepository bankAccountRepository;
 
+    private BankUserDetailsService bankUserDetailsService;
+
     @Autowired
-    public BankAccountServiceImpl(HistoryRepository historyRepository, BankAccountRepository bankAccountRepository) {
+    public BankAccountServiceImpl(HistoryRepository historyRepository,
+                                  BankAccountRepository bankAccountRepository,
+                                  BankUserDetailsService bankUserDetailsService) {
         this.historyRepository = historyRepository;
         this.bankAccountRepository = bankAccountRepository;
+        this.bankUserDetailsService = bankUserDetailsService;
     }
 
 
@@ -98,6 +107,13 @@ public class BankAccountServiceImpl implements BankAccountService {
         historyRepository.save(history);
         return true;
 
+    }
+
+    @Override
+    public List<BankAccount> getUserAccounts(Principal principal) {
+        String username = principal.getName();
+        User user = this.bankUserDetailsService.findUserByLogin(username);
+        return this.bankAccountRepository.findAllByUser(user);
     }
 }
 
