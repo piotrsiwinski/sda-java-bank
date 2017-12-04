@@ -13,10 +13,11 @@
           <h6>Wybierz rodzaj konta.</h6>
 
           <mat-select name="accountType" id="accountType" [(value)]="selected" ngModel>
-            <mat-option value="Wybrałeś konto Premium">PREMIUM</mat-option>
-            <mat-option value="Wybrałeś konto Standard">STANDARD</mat-option>
+            <mat-option value="Premium">PREMIUM</mat-option>
+            <mat-option value="Standard">STANDARD</mat-option>
           </mat-select>
         </mat-form-field>
+        <p>Wybrałeś konto: <strong>{{selected}} </strong></p>
 
         <input type="text" id="account" class="form-control" mdbActive>
         <label for="account">Podaj nazwę konta</label>
