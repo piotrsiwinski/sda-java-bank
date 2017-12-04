@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { RegisterService } from './register.service';
 
-describe('RegisterService', () => {
+describe('bankAccountService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [RegisterService]

@@ -7,7 +7,5 @@ export class UserService {
 
   }
 
-  getUserData() {
-    // this.http.get("http://localhost:8080/api/v1/me", {withCredentials: true});
   }
-}
+
