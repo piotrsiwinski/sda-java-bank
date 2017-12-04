@@ -11,6 +11,8 @@ import pl.sda.poznan.bank.backend.repository.UserRepository;
 import pl.sda.poznan.bank.backend.service.UserService;
 import pl.sda.poznan.bank.backend.web.viewmodel.UserRegistrationVM;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
