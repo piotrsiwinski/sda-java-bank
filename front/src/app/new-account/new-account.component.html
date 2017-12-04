@@ -8,21 +8,21 @@
     </div>
     <div class="col-sm-5">
 
-      <form>
+      <form #account="ngForm" (ngSubmit)="onSubmit(account.value)">
         <mat-form-field>
           <h6>Wybierz rodzaj konta.</h6>
 
-          <mat-select name="accountType" id="accountType" [(value)]="selected" ngModel>
+          <mat-select name="accountType" id="accountType" [(value)]="selected" name="accountType" ngModel>
             <mat-option value="Premium">PREMIUM</mat-option>
             <mat-option value="Standard">STANDARD</mat-option>
           </mat-select>
         </mat-form-field>
         <p>Wybrałeś konto: <strong>{{selected}} </strong></p>
 
-        <input type="text" id="account" class="form-control" mdbActive>
+        <input type="text" id="account" class="form-control" name="account" ngModel mdbActive>
         <label for="account">Podaj nazwę konta</label>
 
-        <input type="number" step="0.01" min="1" id="amount" class="form-control" mdbActive>
+        <input type="number" step="0.01" min="1" id="amount" class="form-control" ngModel name="amount" mdbActive>
         <label for="amount">Podaj kwote</label>
         <br>
 

@@ -68,4 +68,9 @@ public class BankAccountController {
         List<BankAccount> userAccounts = this.bankAccountService.getUserAccounts(principal);
         return ResponseEntity.ok(userAccounts);
     }
+
+    @PostMapping(path = "/account/create")
+    public ResponseEntity<?> create(@RequestBody BankAccount bankAccount){
+        return ResponseEntity.ok(bankAccount);
+    }
 }
