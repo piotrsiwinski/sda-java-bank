@@ -1,3 +1,37 @@
-<p>
-  new-account works!
-</p>
+<div class="container">
+  <div class="col-sm-12">
+
+    <div class="col-sm-12 header-act">
+      <h1 class="h1-responsive font-weight-bold">Dodawanie konta</h1>
+      <p class="lead">Wprowadź dane aby utowrzyć nowe konto</p>
+      <hr class="my-2">
+    </div>
+    <div class="col-sm-5">
+
+      <form>
+        <mat-form-field>
+          <h6>Wybierz rodzaj konta.</h6>
+
+          <mat-select name="accountType" id="accountType" [(value)]="selected" ngModel>
+            <mat-option value="Wybrałeś konto Premium">PREMIUM</mat-option>
+            <mat-option value="Wybrałeś konto Standard">STANDARD</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <input type="text" id="account" class="form-control" mdbActive>
+        <label for="account">Podaj nazwę konta</label>
+
+        <input type="number" step="0.01" min="1" id="amount" class="form-control" mdbActive>
+        <label for="amount">Podaj kwote</label>
+        <br>
+
+        <button type="submit" value="submit" class="btn btn-unique waves-light" mdbRippleRadius>Utwórz konto
+        </button>
+
+      </form>
+
+
+    </div>
+
+  </div>
+</div>
