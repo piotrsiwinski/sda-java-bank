@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserModel} from "../model/UserModel";
 
 
 @Component({
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
+  userData: UserModel;
   constructor() { }
 
   ngOnInit() {
+    this.userData = {
+      firstName: 'Jan',
+      lastName: 'Nowak',
+      email: 'test@wp.pl'
+    };
   }
 
 }

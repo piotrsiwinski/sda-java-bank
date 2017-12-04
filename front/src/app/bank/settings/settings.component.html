@@ -10,10 +10,10 @@
 
 
           <mat-form-field>
-            <input matInput placeholder="Imię" disabled>
+            <input matInput placeholder="Imię" value="{{userData.firstName}}" disabled>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Nazwisko" disabled>
+            <input matInput placeholder="Nazwisko" value="{{userData.lastName}}" disabled>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Adres" disabled>
@@ -22,7 +22,7 @@
             <input class="halfWidth" matInput placeholder="Telefon" required>
           </mat-form-field>
           <mat-form-field>
-            <input class="halfWidth" matInput placeholder="Email" required>
+            <input class="halfWidth" matInput placeholder="Email" value="{{userData.email}}" required>
           </mat-form-field>
 
           <button value="submit" class=" btn btn-unique waves-light" mdbRippleRadius>Blokuj konto</button>
