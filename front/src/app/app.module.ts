@@ -13,6 +13,7 @@ import {LoginService} from "./bank/login/login.service";
 import {AuthService} from "./bank/auth/auth.service";
 import {CanActivateViaAuthGuard} from "./common/activate-guard";
 import {NewTransactionService} from "./bank/new-transaction/new-transaction.service";
+import {TransferService} from "./transfer/transfer.service";
 
 
 
@@ -35,7 +36,7 @@ import {NewTransactionService} from "./bank/new-transaction/new-transaction.serv
     MatButtonModule, MatIconModule, MatListModule, MatSidenavModule,
 
   ],
-  providers: [RegisterService, LoginService, AuthService, CanActivateViaAuthGuard, NewTransactionService],
+  providers: [RegisterService, LoginService, AuthService, CanActivateViaAuthGuard, NewTransactionService, TransferService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
