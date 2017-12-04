@@ -49,7 +49,7 @@ public class CreditServiceImpl implements CreditService {
 
         String myAccountNumber = viewModel.getSourceAccountNumber();
         Long accountNumber = Long.valueOf(myAccountNumber);
-        BankAccount Account = bankAccountRepository.findByAccountNumber(accountNumber);
+        BankAccount Account = bankAccountRepository.findByAccountNumber(accountNumber.toString());
 
         if (!(Account.getAccountType().equals(AccountType.PREMIUM))) {
             throw new OperationException("Nie mozna przydzielic kredytu");
@@ -68,7 +68,7 @@ public class CreditServiceImpl implements CreditService {
         double creditBalance = Double.parseDouble(viewModel.getCreditBalance());
         credit.setCreditBalance(creditBalance);
 
-        int installment = Integer.parseInt(viewModel.getInstallment());K
+        int installment = Integer.parseInt(viewModel.getInstallment());
         credit.setInstallment(installment);
 
         credit.setUser(userRepository.findById(id).orElse(null));
