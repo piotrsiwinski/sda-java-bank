@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LoginService} from "../bank/login/login.service";
 import {TransferService} from "./transfer.service";
+import {UserService} from "../bank/user/user.service";
 
 @Component({
   selector: 'transfer',
@@ -15,7 +16,8 @@ export class TransferComponent implements OnInit {
   constructor(private builder: FormBuilder,
               private service: LoginService,
               private router: Router,
-              private transferService: TransferService) {
+              private transferService: TransferService,
+              private userService: UserService) {
 
   }
 
@@ -28,6 +30,7 @@ export class TransferComponent implements OnInit {
 
   onSubmit(formData) {
     console.log(JSON.stringify(formData, null, 2));
+
     this.transferService.createTransfer(formData)
       .subscribe(data => {
         console.log(JSON.stringify(data, null, 2));

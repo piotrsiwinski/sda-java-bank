@@ -14,6 +14,7 @@ import {AuthService} from "./bank/auth/auth.service";
 import {CanActivateViaAuthGuard} from "./common/activate-guard";
 import {NewTransactionService} from "./bank/new-transaction/new-transaction.service";
 import {TransferService} from "./transfer/transfer.service";
+import {UserService} from "./bank/user/user.service";
 
 
 
@@ -36,7 +37,7 @@ import {TransferService} from "./transfer/transfer.service";
     MatButtonModule, MatIconModule, MatListModule, MatSidenavModule,
 
   ],
-  providers: [RegisterService, LoginService, AuthService, CanActivateViaAuthGuard, NewTransactionService, TransferService],
+  providers: [RegisterService, LoginService, AuthService, CanActivateViaAuthGuard, NewTransactionService, TransferService, UserService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })

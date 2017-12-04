@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserModel} from "../model/UserModel";
+import {UserService} from "../user/user.service";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {UserModel} from "../model/UserModel";
 export class SettingsComponent implements OnInit {
 
   userData: UserModel;
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userData = {
@@ -18,6 +19,14 @@ export class SettingsComponent implements OnInit {
       lastName: 'Nowak',
       email: 'test@wp.pl'
     };
+    this.userService.getUserData().subscribe((data: any) => {
+      this.userData = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email
+      }
+    });
+
   }
 
 }
