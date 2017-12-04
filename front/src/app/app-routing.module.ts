@@ -7,6 +7,7 @@ import {NewTransactionComponent} from "./bank/new-transaction/new-transaction.co
 import {MyFinancesComponent} from "./bank/my-finances/my-finances.component";
 import {HistoryComponent} from "./bank/history/history.component";
 import {CanActivateViaAuthGuard} from "./common/activate-guard";
+import {TransferComponent} from "./transfer/transfer.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full',component: LoginComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'settings',     component: SettingsComponent, canActivate: [CanActivateViaAuthGuard]  },
   { path: 'new-transaction',     component: NewTransactionComponent, canActivate: [CanActivateViaAuthGuard]  },
   { path: 'my-finances',     component: MyFinancesComponent, canActivate: [CanActivateViaAuthGuard] },
-  { path: 'history',     component: HistoryComponent, canActivate: [CanActivateViaAuthGuard]  }
+  { path: 'history',     component: HistoryComponent, canActivate: [CanActivateViaAuthGuard]  },
+  { path: 'transfer',     component: TransferComponent, canActivate: [CanActivateViaAuthGuard]  }
 ];
 
 @NgModule({

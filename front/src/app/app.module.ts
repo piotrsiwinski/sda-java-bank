@@ -14,9 +14,10 @@ import {AuthService} from "./bank/auth/auth.service";
 import {CanActivateViaAuthGuard} from "./common/activate-guard";
 import {NewTransactionService} from "./bank/new-transaction/new-transaction.service";
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     FormsModule,
