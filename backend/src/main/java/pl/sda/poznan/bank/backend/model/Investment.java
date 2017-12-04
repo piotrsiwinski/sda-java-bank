@@ -27,9 +27,10 @@ public class Investment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
-    private Double investmentBalance;
 
-    private Double interest;
+    private Double investmentBalance;
+    @OneToOne
+    private Interest interest;
 
 }
 

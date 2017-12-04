@@ -30,6 +30,6 @@ public class CreditController {
 
         creditService.getCredit(viewModel, id);
 
-        return ResponseEntity.ok("Przelew sie udal");
+        return ResponseEntity.ok("Udzielono kredytu");
     }
 }
