@@ -22,7 +22,7 @@
 
   <div class="page-wrap">
     <header role="banner">
-      <mat-toolbar class="pink darken-4 white-text" >
+      <mat-toolbar class="pink darken-4 white-text">
         <button
           type="button"
           mat-icon-button
@@ -34,7 +34,7 @@
         <span class="spacer"></span>
         <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/register']">Zarejestruj się</button>
         <button *ngIf="!isLoggedIn" mat-button [routerLink]="['/login']">Zaloguj</button>
-        <button *ngIf="isLoggedIn" mat-button (click)="logout()" >Wyloguj</button>
+        <button *ngIf="isLoggedIn" mat-button (click)="logout()">Wyloguj</button>
       </mat-toolbar>
     </header>
     <main class="content">
