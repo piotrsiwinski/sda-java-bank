@@ -46,6 +46,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {FormsModule, ReactiveFormsModule,} from '@angular/forms';
 import {HttpModule} from "@angular/http";
 import {TransferComponent} from "../transfer/transfer.component";
+import {NewAccountComponent} from "../new-account/new-account.component";
 
 @NgModule({
   imports: [
@@ -98,8 +99,8 @@ import {TransferComponent} from "../transfer/transfer.component";
 
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  exports: [LoginComponent, RegisterComponent, MyFinancesComponent, NewTransactionComponent, HistoryComponent, SettingsComponent, TransferComponent],
-  declarations: [LoginComponent, RegisterComponent, MyFinancesComponent, NewTransactionComponent, HistoryComponent, SettingsComponent, TransferComponent]
+  exports: [LoginComponent, RegisterComponent, MyFinancesComponent, NewTransactionComponent, HistoryComponent, SettingsComponent, TransferComponent, NewAccountComponent],
+  declarations: [LoginComponent, RegisterComponent, MyFinancesComponent, NewTransactionComponent, HistoryComponent, SettingsComponent, TransferComponent,NewAccountComponent]
 
 })
 export class BankModule {

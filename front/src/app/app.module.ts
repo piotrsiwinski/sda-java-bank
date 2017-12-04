@@ -15,6 +15,7 @@ import {CanActivateViaAuthGuard} from "./common/activate-guard";
 import {NewTransactionService} from "./bank/new-transaction/new-transaction.service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

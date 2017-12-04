@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-finances',
@@ -8,10 +9,14 @@ import {AuthService} from "../auth/auth.service";
 })
 export class MyFinancesComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
 
+  }
+
+  onAddAccount(){
+    this.router.navigate(['/new-account'])
   }
 
 }
